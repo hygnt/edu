@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shareku.mapper.courses.CoursesClassMapper">
+	<sql id="ccTableName">shareku_courses_class</sql>
+	<sql id="ccColumns">cc_name,type_id,type_name,cc_parent_id,cc_sort,cc_title,cc_keywords,cc_description,page_title</sql>
+
+	<resultMap type="coursesClass" id="coursesClassResultMap">
+		<id column="cc_id" property="ccId"/>
+		<result column="cc_name" property="ccName"/>
+		<result column="type_id" property="typeId"/>
+		<result column="type_name" property="typeName"/>
+		<result column="cc_parent_id" property="ccParentId"/>
+		<result column="cc_sort" property="ccSort"/>
+		<result column="cc_title" property="ccTitle"/>
+		<result column="cc_keywords" property="ccKeywords"/>
+		<result column="cc_description" property="ccDescription"/>
+		<result column="page_title" property="pagetitle"/>
+	</resultMap>
+	
+	<select id="listAllCoursesClass" parameterType="CoursesClass" resultMap="coursesClassResultMap">
+		select cc_id, <include refid="ccColumns"/> from <include refid="ccTableName"/> cc
+		where 1 = 1
+		<if test="ccParentId!=null and ccParentId!=''">
+			and cc.cc_parent_id = #{ccParentId} order by type_id desc
+		</if>
+		<if test="typeId!=null and typeId!=''">
+			and cc.type_id = #{typeId}
+		</if>
+		<if test="ccParentId==null or ccParentId==''">
+			order by cc_sort asc
+		</if>
+	</select>
+	
+	<select id="listPageCoursesClass" parameterType="CoursesClass" resultMap="coursesClassResultMap">
+		select cc_id, <include refid="ccColumns"/> from <include refid="ccTableName"/> cc
+		where 1 = 1
+		<if test="ccName!=null and ccName!=''">
+			and cc.cc_name like "%"#{ccName}"%"
+		</if>
+		<if test="typeName!=null and typeName!=''">
+			and cc.type_name like "%"#{typeName}"%"
+		</if>
+		<if test="ccParentId!=null and ccParentId!=''">
+			and cc.cc_parent_id = #{ccParentId}
+		</if>
+	</select>
+	
+	<select id="getCoursesClassById" parameterType="int" resultMap="coursesClassResultMap">
+		select cc_id, <include refid="ccColumns"/> from <include refid="ccTableName"/> cc where cc.cc_id = #{ccId}
+	</select>
+	
+	<insert id="insertCoursesClass" parameterType="CoursesClass" useGeneratedKeys="true" keyProperty="ccId">
+		insert <include refid="ccTableName"/> (<include refid="ccColumns"/>) values 
+		(#{ccName},#{typeId},#{typeName},#{ccParentId},#{ccSort},#{ccTitle},#{ccKeywords},#{ccDescription},#{pagetitle})
+	</insert>
+	<update id="updateCoursesClass" parameterType="CoursesClass">
+		update <include refid="ccTableName"/> set 
+		cc_name=#{ccName},
+		type_id=#{typeId},
+		type_name=#{typeName},
+		cc_parent_id=#{ccParentId},
+		cc_sort=#{ccSort},
+		cc_title=#{ccTitle},
+		cc_keywords=#{ccKeywords},
+		cc_description=#{ccDescription},
+		page_title=#{pagetitle}
+		where cc_id=#{ccId}
+	</update>
+	
+	<delete id="deleteCoursesClass" parameterType="CoursesClass">
+		delete from <include refid="ccTableName"/> <!-- parameterType="int" where cc_id=#{ccId} -->
+		where cc_id in
+		<foreach item="item" index="index" collection="ccIds" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>

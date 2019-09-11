@@ -1,0 +1,610 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页_晒库网</title>
+<meta name="keywords" content="晒库网,KK,新思诺,英语,在线课堂,远程教育,在线学习,视频课程,公开课,电子商务,信息分享,职场培训,直播课堂,免费听课,名师网络课程,名师网课,B2B" />
+<meta name="description" content="晒库网，中国最大的网络课程在线分享平台。您可在线传授技能，亦可在线学习你所需的一技之长。内容涉及英语学习、职场培训、生活技巧等任何技能。" />
+<link rel="shortcut icon" type="/image/x-icon" href="/favicon.ico" />
+<link rel="stylesheet" href="css/base.css" media="screen" />
+<link rel="stylesheet" href="css/index.css" media="screen" />
+<script src="js/jquery-1.8.0.min.js"></script>
+<!--[if IE]>
+	<script src="js/html5.js"></script>
+	<![endif]-->
+<!-- Internet Explorer .png-fix -->
+<!--[if IE 6]>
+		<script src="js/dd_belatedpng.js"></script>
+		<script>
+			DD_belatedPNG.fix('.png_bg, img');
+		</script>
+	<![endif]-->
+<script src="js/jquery.common.js"></script>
+<script src="js/functions.js"></script>
+</head>
+<body class="sk_index">
+<script>
+	//加头部
+	document.writeln(header.toHtml());
+
+	function addListener(element, e, fn) {
+	    if (element.addEventListener) {
+	        element.addEventListener(e, fn, false);
+	    } else {
+	        element.attachEvent("on" + e, fn);
+	    }
+	}
+	
+	function initCourse() {
+		var typeone = 10000;
+		$.ajax({
+			type: "get",
+			url: "course/indexCourse.shtml?typeId=" + typeone,
+			dataType: "json",
+			success: function(data) {
+				var array = data;
+				for (var i = 0; i < array.length; i++) {
+					var li = document.createElement("li");
+					li.innerHTML = "<div class='pic'> <a href='article_product.html?cid=" + array[i].courseId +"' target='_blank'><img src='"+ tool.domain + array[i].imagePath +"'/></a></div><div class='c_name'><a href='article_product.html?cid=" + array[i].courseId +"' target='_blank'>"+array[i].courseName+"</a></div><div class='c_detail clearfix'><span class='les_counts'><i class='c_1ab177'>3</i>课时</span><span class='stu_counts'><i class='c_1ab177'>87</i>人在学</span></div>";
+					document.getElementById("node1").appendChild(li);
+				}
+				var courseone = document.createElement("div");
+				courseone.setAttribute("class", "i_title clearfix");
+				courseone.innerHTML = "<span class='t_txt fl'>" + array[0].courseOne + "</span><a href='#/course/index.html' target='_blank' class='t_more fr'>更多</a>";
+				document.getElementById("typeone").insertBefore(courseone, document.getElementById("node1"));
+			}
+		});
+		
+		var typetwo = 20000;
+		$.ajax({
+			type: "get",
+			url: "course/indexCourse.shtml?typeId=" + typetwo,
+			dataType: "json",
+			success: function(data) {
+				var array = data;
+				for (var i = 0; i < array.length; i++) {
+					var li = document.createElement("li");
+					li.innerHTML = "<div class='pic'> <a href='article_product.html?cid=" + array[i].courseId +"' target='_blank'><img src='"+ tool.domain + array[i].imagePath +"'/></a></div><div class='c_name'><a href='article_product.html?cid=" + array[i].courseId +"' target='_blank'>"+array[i].courseName+"</a></div><div class='c_detail clearfix'><span class='les_counts'><i class='c_1ab177'>3</i>课时</span><span class='stu_counts'><i class='c_1ab177'>87</i>人在学</span></div>";
+					document.getElementById("node2").appendChild(li);
+				}
+				var courseone = document.createElement("div");
+				courseone.setAttribute("class", "i_title clearfix");
+				courseone.innerHTML = "<span class='t_txt fl'>" + array[0].courseOne + "</span><a href='#/course/index.html' target='_blank' class='t_more fr'>更多</a>";
+				document.getElementById("typetwo").insertBefore(courseone, document.getElementById("node2"));
+			}
+		});
+		
+		var typethree = 30000;
+		$.ajax({
+			type: "get",
+			url: "course/indexCourse.shtml?typeId=" + typethree,
+			dataType: "json",
+			success: function(data) {
+				var array = data;
+				for (var i = 0; i < array.length; i++) {
+					var li = document.createElement("li");
+					li.innerHTML = "<div class='pic'> <a href='article_product.html?cid=" + array[i].courseId +"' target='_blank'><img src='"+ tool.domain + array[i].imagePath +"'/></a></div><div class='c_name'><a href='article_product.html?cid=" + array[i].courseId +"' target='_blank'>"+array[i].courseName+"</a></div><div class='c_detail clearfix'><span class='les_counts'><i class='c_1ab177'>3</i>课时</span><span class='stu_counts'><i class='c_1ab177'>87</i>人在学</span></div>";
+					document.getElementById("node3").appendChild(li);
+				}
+				var courseone = document.createElement("div");
+				courseone.setAttribute("class", "i_title clearfix");
+				courseone.innerHTML = "<span class='t_txt fl'>" + array[0].courseOne + "</span><a href='#/course/index.html' target='_blank' class='t_more fr'>更多</a>";
+				document.getElementById("typethree").insertBefore(courseone, document.getElementById("node3"));
+			}
+		});
+	}
+	
+	$(function(){
+		//主页打开分类列表
+		$("#ccList").show();
+		getCCdata();
+		initCourse();
+		$("li.liClient").mouseover(function(){
+			$("li.liClient > a").css('background','#179362');
+			$("#clientList").show();
+		}).mouseleave(function(){
+			$("li.liClient > a").css('background','');
+			$("#clientList").hide();
+		});
+		$("#head_searchSubmit").mouseover(function(){
+			$(this).parent().addClass('tp_txt_focus');
+		}).mouseleave(function(){
+			$(this).parent().removeClass('tp_txt_focus');
+		});
+		$(".topR_search").inputTips();
+		$("#head_searchKeywords").prev("span.iptTips").css({"left":"1px", "top":"0px"});
+
+		$("#searchType").click(function(){
+			var obj = $(this);
+			var pobj = $("#searchTypeList");
+			var course = $("#courseType").clone();
+			var school = $("#schoolType").clone();
+			obj.showMenu('#searchTypeList');
+			obj.mouseout(function(){
+				obj.hideMenu('#searchTypeList');
+			});
+			
+			pobj.find("a").click(function(){
+				var cobj = $(this);
+				obj.attr('stype', cobj.attr('stype')).html(cobj.text()+'<i class="icoR icoR_5"></i>');
+				if(cobj.attr('stype') == 'school'){
+					$("#courseType").remove();
+					$("#schoolType").after(course);
+				} else {
+					$("#schoolType").remove();
+					$("#courseType").after(school);
+				}
+				pobj.hide();
+			});
+		});
+		
+		$("#head_searchKeywords").keydown(function(event){
+			if(event.keyCode == 13){
+				$("#head_searchSubmit").trigger('click');
+			}
+		});
+		
+		$("#head_searchSubmit").click(function(){
+			var keywords = $.trim($("#head_searchKeywords").val()),
+			searchType = $("#searchType").attr('stype');
+			if(searchType == "course"){
+				if(keywords == ''){
+					searchUrl = "/course/index.html";	
+				}else{
+					searchUrl = "/course/_"+encodeURIComponent(keywords)+"_____.html";
+				}
+			}else{
+				searchUrl = "/?mod=search&act=school&keyword="+encodeURIComponent(keywords);
+			}
+			document.location.href = searchUrl;
+			return false;
+		});
+		$(window).scroll(function(){
+			if ($(window).scrollTop()>100){
+				$("li.r_gotop").fadeIn(750);
+			}else{
+				$("li.r_gotop").fadeOut(750);
+			}
+		});
+		addListener(document, "mouseover",function(evt) {
+		    var evt = window.event ? window.event: evt,
+		    target = evt.srcElement || evt.target;
+		    if(target.id == "btnWeixin") {
+		    	$("#btnWeixin").animate({left: '-66px'}, "fast");   
+		        return;
+		    }else if(target.id == "btnFeedbask"){
+		    	$("#btnFeedbask").animate({left: '-66px'}, "fast");   
+		        return;
+		    }else if(target.id == "btnGotop"){
+		    	$("#btnGotop").animate({left: '-66px'}, "fast");   
+		        return;
+		    }
+		});
+		addListener(document, "mouseout",function(evt) {
+		    var evt = window.event ? window.event: evt,
+		    target = evt.srcElement || evt.target;
+		    if(target.id == "btnWeixin") {
+		    	$("#btnWeixin").stop(true).animate({left: '0px'}, "fast");   
+		        return;
+		    }else if(target.id == "btnFeedbask"){
+		    	$("#btnFeedbask").stop(true).animate({left: '0px'}, "fast");   
+		        return;
+		    }else if(target.id == "btnGotop"){
+		    	$("#btnGotop").stop(true).animate({left: '0px'}, "fast");   
+		        return;
+		    }
+		}); 
+		
+		$("#weixinClose").click(function(){
+			$("#weixinCodeImg").hide();
+			$("#btnWeixin").css("display","block");		
+		});
+		$("#btnWeixin").click(function(){
+			$("#btnWeixin").css("display","none");
+			$("#weixinCodeImg").show();
+		});
+		$("#btnFeedbask").click(function(){
+			var popFeedbaskBox = $.skAjaxBoxy({
+				url:"/?mod=help&act=about&type=popfeed",
+				title:"意见反馈",
+				width:540,
+				height:424,
+				callbask:function(){
+					$("#cancel").click(function(){
+						popFeedbaskBox.cancel();
+					});
+					$("#FeedbaskType").change(function(){
+						$("#FeedbaskTypeErrorTips").hide();
+					});
+					$("#submit").click(function(){
+						$("#FeedbaskErrorTips,#FeedbaskTypeErrorTips").hide();
+						var type = $("#FeedbaskType").val();
+						var message = $("#FeedbaskMsg").val();
+						if(type == ''){
+							$("#FeedbaskTypeErrorTips").text('请选择问题类型').show();
+							return false;
+						}
+						if(message == ''){
+							$("#FeedbaskErrorTips").text('请填写反馈意见').show();
+							return false;
+						}
+						if(getStrActualLen(message) > 64000){
+							$("#FeedbaskErrorTips").text('反馈意见不得超过64000字符').show();
+							return false;
+						}
+						if($(this).attr('disabled') == true){
+							return false;
+						}
+						$.ajax({
+							type:"post",
+							url:"/?mod=help&act=about&type=popfeed&op=submit",
+							dataType:"json",
+							data:"type="+type+"&message="+encodeURIComponent(message),
+							beforeSend:function(){
+								$(this).attr("disabled",true);
+							},
+							success:function(ret){
+								if(ret.code == 0){
+									popFeedbaskBox.cancel();
+									$.skTipsBoxy({message:ret.data,width:300});
+								}else{
+									$(this).removeAttr("disabled");
+									alert(ret.data);
+								}
+							}
+						});
+					});
+					$("#divFbMsg").inputTips();
+					$("#FeedbaskType").divSelect(160);
+				}
+			});		
+		});
+
+					$("a.close_t").click(function(){
+			  	$("div.newBrand").slideUp();
+			  	$.cookie.set('web_notice', '1',999999999999);
+			});
+			});
+	</script>
+<div class="proItem mb20 bc">
+  <section class="fr index_item3 clearfix">
+    <div class="pri_focus">
+      <div class="gl1"><a href="#/1097870-105575.html" target="_blank"><img src="uploads/0e30f21ab34bb8d4e062c98ba6eb53e1.jpg"></a></div>
+      <div class="gl2"><a href="#/1395435-100149.html" target="_blank"><img src="uploads/3499c2b10933bfbf666b49f317398bdf.jpg"></a></div>
+      <div class="gl3"><a href="#/1887062-104661.html" target="_blank"><img src="uploads/d45629fd7fda55ff952a2c3335a84fea.jpg"></a></div>
+      <div class="gl4"><a href="#/1219509-102241.html" target="_blank"><img src="uploads/d0322eff56d1c4738c8beae6b1a41190.jpg"></a></div>
+    </div>
+    <div class="pri_list">
+      <header class="i_title"> <span class="t_txt fl">发现</span> </header>
+      <ul class="i_list">
+        <li> <a href="#/merge" target="_blank"><img class="pic" src="uploads/97a1ee097505bad9588201dcfac525d3.jpg"></a>
+          <h4><a href="#/2014/kaixue" target="_blank">晒库网全民开学盛典</a></h4>
+          <p>签到、抽奖、还可以赢奖学金，各种大奖等你来拿哦</p>
+        </li>
+        <li> <a href="#/2014/kaoyan" target="_blank"><img class="pic" src="uploads/f7cc027ea7722951e3cfdae695a1bd2a.jpg"></a>
+          <h4><a href="#/2014/kaoyan" target="_blank">2015考研由你来决定</a></h4>
+          <p>考研路漫漫，最优秀的考研名师解析2015考研大纲，快来参加吧.</p>
+        </li>
+        <li> <a href="#/1312939-102906.html" target="_blank"><img class="pic" src="uploads/31.jpg"></a>
+          <h4><a href="#/1312939-102906.html" target="_blank">日语零基础入门玩转五十音</a></h4>
+          <p>轻松掌握五十音图，脱口而出一些简单的日语句子，走起~~</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+<div class="secItem mb20 bc clearfix">
+  <div class="fl">
+    <section class="index_item" id="typeone">
+    	<div class="i_list clearfix" id="node1">
+        
+      </div>
+    </section>
+    <section class="index_item1 mb20" id="typetwo">
+      <div class="i_title clearfix" id="node2">
+      </div>
+    </section>
+    <section class="index_item1 mb20" id="typethree">
+      <div class="i_title clearfix" id="node3">
+      </div>
+    </section>
+  </div>
+  <div class="fr">
+    <!-- =E 网络直播公开课 -->
+    <section class="index_side index_side_zb">
+      <div class="s_title"> <span class="s_txt fl">最近直播课</span> <a class="s_more fr" target="_blank" href="#/course/__prelectstarttime_asc___.html">更多</a> </div>
+      <div class="zb_wrap">
+        <ul class="zb_list">
+          <li class="zb_head zb">直播中</li>
+          <li> <span class="time">08:30</span> <span class="c_name"><a href="#/1343376-92427.html" title="ProE模具设计上编之进价建模" target="_blank" class="clearfix">ProE模具设计上编之进价建模</a></span> </li>
+          <li> <span class="time">08:30</span> <span class="c_name"><a href="#/1644477-101390.html" title="新概念一册(上)(在线视频教学)" target="_blank" class="clearfix">新概念一册(上)(在线视频教学)</a></span> </li>
+        </ul>
+        <ul class="zb_list">
+          <li class="zb_head">今天</li>
+          <li> <span class="time">10:00</span> <span class="c_name"><a href="#/1041791-105578.html" title="PS软件教程【Photoshop快速入门设计天天学】" target="_blank" class="clearfix">PS软件教程【Photoshop快速入门设计天天学】</a></span> </li>
+          <li> <span class="time">10:00</span> <span class="c_name"><a href="#/1736343-104912.html" title="一个人用日语去旅游  日语口语入门" target="_blank" class="clearfix">一个人用日语去旅游  日语口语入门</a></span> </li>
+          <li> <span class="time">10:30</span> <span class="c_name"><a href="#/1302802-111031.html" title="U来公益甘肃柳树湾小学英语五年级" target="_blank" class="clearfix">U来公益甘肃柳树湾小学英语五年级</a></span> </li>
+          <li> <span class="time">11:00</span> <span class="c_name"><a href="#/1041791-94051.html" title="PS在线公开课" target="_blank" class="clearfix">PS在线公开课</a></span> </li>
+          <li> <span class="time">11:00</span> <span class="c_name"><a href="#/1041791-105586.html" title="CAD软件教程【CAD室内绘图入门施工图】" target="_blank" class="clearfix">CAD软件教程【CAD室内绘图入门施工图】</a></span> </li>
+          <li> <span class="time">12:00</span> <span class="c_name"><a href="#/1041791-105588.html" title="AI软件教程【Illustrator入门精通】" target="_blank" class="clearfix">AI软件教程【Illustrator入门精通】</a></span> </li>
+          <li> <span class="time">13:00</span> <span class="c_name"><a href="#/1041791-105590.html" title="PS软件教程【Photoshop快速入门完整教学】" target="_blank" class="clearfix">PS软件教程【Photoshop快速入门完整教学】</a></span> </li>
+          <li> <span class="time">13:00</span> <span class="c_name"><a href="#/1648217-101659.html" title="（第二期）一对一家庭康复网络指导" target="_blank" class="clearfix">（第二期）一对一家庭康复网络指导</a></span> </li>
+          <li> <span class="time">13:30</span> <span class="c_name"><a href="#/1621447-110992.html" title="PPT办公室入门到实战" target="_blank" class="clearfix">PPT办公室入门到实战</a></span> </li>
+          <li> <span class="time">14:00</span> <span class="c_name"><a href="#/1041791-105293.html" title="3Dmax公开课" target="_blank" class="clearfix">3Dmax公开课</a></span> </li>
+          <li> <span class="time">14:00</span> <span class="c_name"><a href="#/1041791-105593.html" title="PS软件教程【Photoshop快速入门教程学习】" target="_blank" class="clearfix">PS软件教程【Photoshop快速入门教程学习】</a></span> </li>
+          <li> <span class="time">14:00</span> <span class="c_name"><a href="#/1043717-110191.html" title="考研高端vip名师精讲班" target="_blank" class="clearfix">考研高端vip名师精讲班</a></span> </li>
+          <li> <span class="time">15:00</span> <span class="c_name"><a href="#/1041791-105594.html" title="AI软件教程【Illustrator快速入门】" target="_blank" class="clearfix">AI软件教程【Illustrator快速入门】</a></span> </li>
+          <li> <span class="time">15:00</span> <span class="c_name"><a href="#/1644477-111176.html" title="一对一《商务口语训练》" target="_blank" class="clearfix">一对一《商务口语训练》</a></span> </li>
+        </ul>
+      </div>
+    </section>
+    <!-- =S 热门学校/学校排行 -->
+    <section class="index_side index_side_phb">
+      <div class="s_title">
+        <ul class="tabs" id="toplistTab">
+          <li class="curr first" tid=1>热门学校</li>
+          <li tid=2>学校排行</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <div class="cons_sub pb10" id="toplist_1">
+          <ul class="school_list">
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s1302122.html" target="_blank" title="成长课堂"> <img src="uploads/1302122_small.jpg"/> </a> <span class="c_count">1</span> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s1302122.html" target="_blank" title="成长课堂">成长课堂</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s1299562.html" target="_blank" title="Q药网执业药师学院"> <img src="uploads/1299562_small.jpg"/> </a> <span class="c_count">2</span> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s1299562.html" target="_blank" title="Q药网执业药师学院">Q药网执业药师学院</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s80398.html" target="_blank" title="雅思云课堂"> <img src="uploads/80398_small.jpg"/> </a> <span class="c_count">3</span> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s80398.html" target="_blank" title="雅思云课堂">雅思云课堂</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s1020057.html" target="_blank" title="明王道网校"> <img src="uploads/1020057_small.jpg"/> </a> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s1020057.html" target="_blank" title="明王道网校">明王道网校</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s30186.html" target="_blank" title="天扬网校"> <img src="uploads/30186_small.jpg"/> </a> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s30186.html" target="_blank" title="天扬网校">天扬网校</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+          </ul>
+          <p class="pMore pr20"><a class="c_999" target="_blank" href="#/?mod=school&act=toplist&type=recently">查看更多学校排名>></a></p>
+        </div>
+        <div class="cons_sub pb10" style="display:none" id="toplist_2">
+          <ul class="school_list">
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s1826279.html" target="_blank" title="21互联[度]"> <img src="uploads/1826279_small.jpg"/> </a> <span class="c_count">1</span> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s1826279.html" target="_blank" title="21互联[度]">21互联[度]</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s1937931.html" target="_blank" title="oeasy[度]"> <img src="uploads/1937931_small.jpg"/> </a> <span class="c_count">2</span> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s1937931.html" target="_blank" title="oeasy[度]">oeasy[度]</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s1090971.html" target="_blank" title="熊猫学校"> <img src="uploads/1090971_small.jpg"/> </a> <span class="c_count">3</span> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s1090971.html" target="_blank" title="熊猫学校">熊猫学校</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s1960305.html" target="_blank" title="多学多用[度]"> <img src="uploads/1960305_small.jpg"/> </a> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s1960305.html" target="_blank" title="多学多用[度]">多学多用[度]</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="pic"> <a href="#/s1302122.html" target="_blank" title="成长课堂"> <img src="uploads/1302122_small.jpg"/> </a> </div>
+              <div class="detail">
+                <p class="s_name"><a href="#/s1302122.html" target="_blank" title="成长课堂">成长课堂</a></p>
+                <p class="s_intro"></p>
+              </div>
+            </li>
+          </ul>
+          <p class="pMore pr20"><a class="c_999" target="_blank" href="#/?mod=school&act=toplist">查看更多学校排名>></a></p>
+        </div>
+      </div>
+    </section>
+    <section class="index_side index_side_hzhb">
+      <div class="s_title"> <span class="s_txt fl">最新合作伙伴</span> <a href="/?mod=search&act=school" target="_blank" class="fr s_more">更多</a> </div>
+      <ul class="parter_list1 clearfix">
+        <li> <a href="#/s1982732.html" target="_blank"> <img class="pic" src="uploads/1982732_big.jpg?t=1409800260" alt="尚硅谷"> </a>
+          <p class="txt"><a href="#/s1982732.html" target="_blank">尚硅谷</a></p>
+        </li>
+        <li> <a href="#/s1887926.html" target="_blank"> <img class="pic" src="uploads/1887926_big.jpg?t=1409801501" alt="学派网"> </a>
+          <p class="txt"><a href="#/s1887926.html" target="_blank">学派网</a></p>
+        </li>
+        <li> <a href="#/s1956474.html" target="_blank"> <img class="pic" src="uploads/1956474_big.jpg?t=1409800509" alt="时代焦点教育"> </a>
+          <p class="txt"><a href="#/s1956474.html" target="_blank">时代焦点教育</a></p>
+        </li>
+        <li> <a href="#/s1995847.html" target="_blank"> <img class="pic" src="uploads/1995847_big.jpg?t=1409820227" alt="268v网校"> </a>
+          <p class="txt"><a href="#/s1995847.html" target="_blank">268v网校</a></p>
+        </li>
+        <li> <a href="#/s1808942.html" target="_blank"> <img class="pic" src="uploads/1808942_big.jpg?t=1409819865" alt="智联教育"> </a>
+          <p class="txt"><a href="#/s1808942.html" target="_blank">智联教育</a></p>
+        </li>
+        <li> <a href="#/s1989485.html" target="_blank"> <img class="pic" src="uploads/4a2643e453622aadedc928c2b82a7c0b.jpg" alt="蓝珀学校"> </a>
+          <p class="txt"><a href="#/s1989485.html" target="_blank">蓝珀学校</a></p>
+        </li>
+      </ul>
+      <s class="clearfix"></s></section>
+    <section class="index_side index_side_mxjs">
+      <div class="s_title"> <span class="s_txt fl">明星讲师</span> </div>
+      <ul class="teacher_list">
+        <li class="clearfix">
+          <div class="pic"> <a href="#/s1090971.html" target="_blank"> <img src="uploads/f690c975415587556402c92494600c32.jpg" alt="熊猫学校-piggy"> </a> </div>
+          <div class="detail">
+            <p class="t_name"> <a href="#/s1090971.html" class="" target="_blank"> 熊猫学校-PiGGy </a> </p>
+            <p class="t_intro">在美留学生，地道美语教学讲师</p>
+          </div>
+        </li>
+        <li class="clearfix">
+          <div class="pic"> <a href="#/s1198943.html" target="_blank"> <img src="uploads/8e7c866b935724398f8ad4ff6bb1a452.jpg" alt="睿英学院-丁老师"> </a> </div>
+          <div class="detail">
+            <p class="t_name"> <a href="#/s1198943.html" class="" target="_blank"> 睿英学院-丁老师 </a> </p>
+            <p class="t_intro">知名考研英语、四六级英语讲师</p>
+          </div>
+        </li>
+        <li class="clearfix">
+          <div class="pic"> <a href="#/s1032537.html" target="_blank"> <img src="uploads/c04df252f1c63d174222e99fd3143281.jpg" alt="阿浪天涯法语工作室-会飞的猫"> </a> </div>
+          <div class="detail">
+            <p class="t_name"> <a href="#/s1032537.html" class="" target="_blank"> 阿浪法语-会飞的猫 </a> </p>
+            <p class="t_intro">魁北克地区资深顾问，法语教学讲师</p>
+          </div>
+        </li>
+        <li class="clearfix">
+          <div class="pic"> <a href="#/s33558.html" target="_blank"> <img src="uploads/a94b7c4c680a8ac5499ec8e03022adf0.jpg" alt="学通在线-土豆"> </a> </div>
+          <div class="detail">
+            <p class="t_name"> <a href="#/s33558.html" class="" target="_blank"> 学通在线-土豆 </a> </p>
+            <p class="t_intro">主讲中小学数学、奥数，深受学生喜爱</p>
+          </div>
+        </li>
+      </ul>
+      <s class="clearfix"></s></section>
+  </div>
+</div>
+<!-- =E secItem -->
+<section class="index_item_school">
+  <div class="i_title">
+    <div class="t_txt">最受关注的学校</div>
+  </div>
+  <ul class="i_list clearfix">
+    <li>
+      <div class="pic"> <a href="#/s1020057.html" target="_blank"><img src="uploads/2439353f98439f4b40611f9e71300669.jpg" alt="明王道网校"></a> </div>
+      <div class="s_name"><a target="_blank" href="#/s1020057.html" title="明王道网校">明王道网校</a></div>
+    </li>
+    <li>
+      <div class="pic"> <a href="#/s1796298.html" target="_blank"><img src="uploads/1796298_big.jpg?t=1409811140" alt="红脸蛋儿手绘工作室"></a> </div>
+      <div class="s_name"><a target="_blank" href="#/s1796298.html" title="红脸蛋儿手绘工作室">红脸蛋儿手绘工作室</a></div>
+    </li>
+    <li>
+      <div class="pic"> <a href="#/s1374325.html" target="_blank"><img src="uploads/46ba4bcbb6e411bd0ccfed745b460ada.jpg" alt="巍峰营声乐网"></a> </div>
+      <div class="s_name"><a target="_blank" href="#/s1374325.html" title="巍峰营声乐网">巍峰营声乐网</a></div>
+    </li>
+    <li>
+      <div class="pic"> <a href="#/s1032537.html" target="_blank"><img src="uploads/8077a76b8e3219995515a54c58de6a76.jpg" alt="阿浪天涯法语工作室"></a> </div>
+      <div class="s_name"><a target="_blank" href="#/s1032537.html" title="阿浪天涯法语工作室">阿浪天涯法语工作室</a></div>
+    </li>
+    <li>
+      <div class="pic"> <a href="#/s1800632.html" target="_blank"><img src="uploads/1800632_big.jpg?t=1409811156" alt="天下网校"></a> </div>
+      <div class="s_name"><a target="_blank" href="#/s1800632.html" title="天下网校">天下网校</a></div>
+    </li>
+    <li>
+      <div class="pic"> <a href="#/s1036575.html" target="_blank"><img src="uploads/6a57400f2826c1a668c3493c37ae3e2d.jpg" alt="世宗韩语网校"></a> </div>
+      <div class="s_name"><a target="_blank" href="#/s1036575.html" title="世宗韩语网校">世宗韩语网校</a></div>
+    </li>
+    <li>
+      <div class="pic"> <a href="#/s1253098.html" target="_blank"><img src="uploads/fe5f040436e8fefa518c0064a33647ad.jpg" alt="后盾网"></a> </div>
+      <div class="s_name"><a target="_blank" href="#/s1253098.html" title="后盾网">后盾网</a></div>
+    </li>
+    <li>
+      <div class="pic"> <a href="#/s1395435.html" target="_blank"><img src="uploads/1395435_big.jpg?t=1409811093" alt="达梦教育"></a> </div>
+      <div class="s_name"><a target="_blank" href="#/s1395435.html" title="达梦教育">达梦教育</a></div>
+    </li>
+    <li>
+      <div class="pic"> <a href="#/s1373478.html" target="_blank"><img src="uploads/1373478_big.jpg?t=1409810124" alt="千锋学院"></a> </div>
+      <div class="s_name"><a target="_blank" href="#/s1373478.html" title="千锋学院">千锋学院</a></div>
+    </li>
+  </ul>
+</section>
+<section class="index_item_service">
+  <ul class="ulHelp">
+    <li>
+      <div class="con">
+        <h4 class="b1"><a href="/helpcenter/index.html" target="_blank">知心帮助</a></h4>
+        <p><a href="/helpcenter/login_step1.html" target="_blank">新手指南</a></p>
+        <p><a href="/helpcenter/learn_step1.html" target="_blank">我要听课</a></p>
+        <p><a href="/helpcenter/teach_step1.html" target="_blank">我要讲课</a></p>
+        <p><a href="/helpcenter/school_step1.html" target="_blank">我要开学校</a></p>
+      </div>
+    </li>
+    <li>
+      <div class="con">
+        <h4 class="b2">学习神器</h4>
+        <p><a href="#" target="_blank">晒库网KK</a></p>
+        <p><a href="#ipad" target="_blank">晒库网iPad版</a></p>
+        <p><a href="#iphone" target="_blank">晒库网iPhone版</a></p>
+        <p><a href="#android" target="_blank">晒库网Android版</a></p>
+      </div>
+    </li>
+    <li>
+      <div class="con">
+        <h4 class="b3">关注我们</h4>
+        <p><a href="#" target="_blank">百度贴吧</a></p>
+        <p><a href="#" target="_blank">新浪微博</a></p>
+        <p><a href="#" target="_blank">QQ空间</a></p>
+        <div class="weixin"> <a href="#" target="_blank">官方微信</a>
+          <!--微信二维码默认隐藏-->
+          <div style="display: none;" class="erweima"><img alt="" src="../images/weixin.png"></div>
+        </div>
+      </div>
+    </li>
+    <li class="last">
+      <div class="con">
+        <h4 class="b4">客服电话：400-123-458</h4>
+        <p class="serviceTime">周一至周日9:30-19:00</p>
+        <h4>客服邮箱：kefu@shareku.com</h4>
+        <h4>在线客服： <img  style="CURSOR: pointer" class="sk_talkIcon" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=561779482&o=shareku.com&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC=http://wpa.qq.com/pa?p=1:561779482:10 alt="有事点这里哦"> </h4>
+      </div>
+    </li>
+  </ul>
+</section>
+<style>
+	.ft_friendlinks{width:1190px;margin:0 auto;}
+	.flink{}
+	.flink .tit{float:left;width:70px;padding-top:3px;font:700 14px/1.1 "微软雅黑","黑体",sans-serif;color:#666;}
+	.flink .con{float:left;width:1120px;padding:0 0 10px 0;font-family:arial;}
+	.flink .con a{margin-right:10px;line-height:22px;}
+	</style>
+<div class="ft_friendlinks">
+  <dl class="flink">
+    <dt class="tit">友情链接</dt>
+    <dd class="con"> <a href="http://www.moe.edu.cn/" target="_blank">中华人民共和国教育部</a> <a href="http://www.bjedu.gov.cn/" target="_blank">北京市教委</a><a href="#" target="_blank">更多...</a> </dd>
+  </dl>
+</div>
+<script type="text/javascript">
+	$('.mn_sort > .mn_mc > .item').hover(function(){
+		$(this).addClass('item_hover');
+		$(this).children('.i_bd').show();
+	},function(){
+		$(this).removeClass('item_hover');
+		$(this).children('.i_bd').hide();
+	});
+ 	$('.weixin').hover(function(){
+		$(this).find('.erweima').show();
+	},function(){
+		$(this).find('.erweima').hide();
+	});
+	
+	//在什么地方加，就是什么位置写，这个是底部，故在底部写就行了
+	document.writeln(footer.toHtml());
+</script>
+<script src="js/slide.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
+<div style="display:none;"></div>

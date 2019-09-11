@@ -1,0 +1,390 @@
+﻿@charset "utf-8";
+/* =START layout *****************************************************/
+/*
+
+ck_detail 详情页
+————.topR 头部导航(base)
+————.listHd 头部功能栏(base)
+		————.f_nav
+		————.f_search
+		————.f_extend
+————.detailPrimary 产品概览
+	————.priPic
+	————.priInfo
+	————.priSchool
+————.detailContent 详情页内容
+	————.sm_side
+		————.bdStudent
+		————.bdSort1
+		————.bdFav
+	————.sm_main
+		————.bdTabs
+		————.bdBox
+			————.con_intro 课程简介
+			————.con_catalog 课程目录
+			————.con_comment 课程评价
+————.footer 底部（base）
+
+
+*/
+/* =END layout *******************************************************/
+
+
+body.ck_detail{background-color:#f0f0f0;}
+
+.n_btn_st{display:inline-block;height:40px;padding:0 10px 0 32px;font:700 14px/40px 'microsoft yahei';color:#7AB1CC;background:#E8F4FD url('../images/ico_detail_item.png') no-repeat 12px -1678px;border:1px solid #BDD9E6;vertical-align: bottom;}
+.n_btn_st:hover{background-color:#D6ECFC;color:#6BA9C7;border-color:#B3D2E1;}
+
+/* =S listHd 头部功能栏 ********************************************/
+.listHd{width:1190px;margin-left:auto;margin-right:auto;}
+.lFilter{width:auto;height:48px;border:1px solid #dbdbdb;background-color:#fff;}
+.lFilter .ico_lf{padding-left:20px;background:url('../images/list_bg.png') no-repeat 0 0;}
+.lFilter .ico_kcfl{background-position:0 2px;}
+.lFilter .ico_pd{background-position:0 -27px;position:relative;}
+.lFilter .ico_pd_sub{position:absolute;top:20px;left:0;z-index:999;width:78px;border:1px solid #dbdbdb;background-color: #fff;}
+.lFilter .ico_pd_sub a{display:block;padding:0 10px;line-height:24px;font-size:12px;}
+.lFilter .ico_pd_sub a:hover{background-color:#f0f0f0;}
+.lFilter .ico_sqzls{background-position:0 -60px;}
+.lFilter .ico_cjxx{background-position:0 -90px;}
+	/* .f_nav */
+.lFilter .f_nav{float:left;width:255px;height:20px;margin-top:14px;}
+.lFilter .f_nav li{float:left;font:14px/20px 'simsun';}
+.lFilter .f_nav li a{color:#555;}
+.lFilter .f_nav .arrow{display:block;position:absolute;top:6px;right:0px;width:10px;height:6px;overflow:hidden;background:url('../images/list_bg.png') no-repeat -3px -321px;}
+	/* .f_search */
+.lFilter .f_search{float:left;width:682px;height:32px;margin-top:8px;}
+.lFilter .f_search .sBox{position:relative;float:left;width:460px;height:30px;border:1px solid #dbdbdb;}
+.lFilter .f_search .sBox .s_left{position:relative;float:left;width:53px;height:30px;background:#f0f0f0;}
+.lFilter .f_search .sBox .s_left a{display:block;position:relative;width:53px;height:30px;line-height:30px;text-indent:11px;color:#777;}
+.lFilter .f_search .sBox .s_left a .icoR{position:absolute;top:14px;right:7px;}
+.lFilter .f_search .sBox .s_left_list{position: absolute;top:-1px;left:-1px;z-index:999;width:52px;border:1px solid #dbdbdb;background-color:#fff;}
+.lFilter .f_search .sBox .s_left_list a{display:block;line-height:30px;color:#666;text-indent:11px;}
+.lFilter .f_search .sBox .s_left_list a:hover{background-color:#eee;}
+.lFilter .f_search .sBox .s_center{position:relative;float:left;width:356px;height:30px;background:#fff; }
+.lFilter .f_search .sBox .s_center .txt{width:336px;border:none;border:0;*display:inline;font-size:12px;color:#777;height:14px;margin:8px 0;padding:0 10px;}
+.lFilter .f_search .sBox .s_center .txtList{position:absolute;top:30px;left:0;width:355px;border:1px solid #dbdbdb;line-height:22px;}
+.lFilter .f_search .sBox .s_center .txtList li{background:#fff;padding-left:10px;color:#777;cursor:pointer;}
+.lFilter .f_search .sBox .s_center .txtList li:hover{background:#f0f0f0;}
+.lFilter .f_search .sBox .s_right{float:left;width:51px;height:30px;background:#FC8900;}
+.lFilter .f_search .sBox .s_right a{display:block;font:300 14px/30px 'simsun';color:#fff;text-align:center;}
+.lFilter .f_search .sBox .s_right a:hover{background:#ff6600;}
+.lFilter .f_search .hotwords{float:left;width:210px;padding-left:10px}
+.lFilter .f_search .hotwords a{font:300 12px/20px 'simsun';float:left;margin:6px 5px;color:#777;}
+.lFilter .f_search .hotwords a:hover{color:#ff7f00 ;}
+	/* .f_extend */
+.lFilter .f_extend{float:right;width:250px;height:20px;margin-top:14px;}
+.lFilter .f_extend li{float:right;font:14px/20px 'simsun';}
+.lFilter .f_extend li a{color:#555;}
+/* =E listHd 头部功能栏 ********************************************/
+
+.index_sort_wrap{position:absolute;top:48px;left:-1px;z-index:999;}
+/* 课程分类 */
+.index_sort{position:relative;z-index:999;width:250px;height:280px;background:#fff;}
+.index_sort dl.item{position:absolute;top:0;left:0;width:248px;border:1px solid #dbdbdb;padding:8px 0;background:#fff url('../images/ck-index0807b_r21_c16.png') no-repeat 225px 50%;}
+.index_sort dl.item_1{top:0px;}
+.index_sort dl.item_2{top:87px;}
+.index_sort dl.item_3{top:152px;}
+.index_sort dl.item_4{top:217px;}
+.index_sort dl.item .i_t{height:26px;padding-left:12px;font:700 14px/26px 'simsun',serif;color:#168B5C;}
+.index_sort dl.item .i_c{padding-left:5px;}
+.index_sort dl.item .i_c:after{display:block;height:0;content:' ';clear:both;visibility:visible;*zoom;1;}
+.index_sort dl.item .i_c a{display:inline-block;*display:inline;*zoom:1;margin:3px 5px;font:300 12px/16px 'simsun'; padding:0 3px; color:#777;}
+.index_sort dl.item .i_c a:hover{background:#ff9c00;color:#fff;}
+.index_sort dl.item.hover{z-index:200;background:#fff;border:1px solid #f60;border-right:none;width:250px;background-color:#fff;}
+/* tips 详情分类弹出框 */
+.i_c_tips{position:absolute;z-index:199;width:670px;border:1px solid #f60;}
+.i_c_tips .i_c_tips_t{height:36px;border-bottom:#e6e6e6 1px solid;background:#f7f7f7; font:700 14px/36px 'simsun'; text-indent:10px; color:#4B9A03;}
+.i_c_tips .i_c_tips_c{padding:10px 15px;background:#fff;}
+.i_c_tips .i_c_tips_c .c_item{width:320px;float:left;*display:inline;}
+.i_c_tips .i_c_tips_c .t{padding-left:0px;padding-top:5px;padding-bottom:5px; margin-right:20px;font:300 14px/22px 'simsun';color:#f60; border-bottom:1px dotted #ddd;}
+.i_c_tips .i_c_tips_c ul{width:100%;height:100%; *background:#fff;}
+.i_c_tips .i_c_tips_c ul:after{clear:both;display:block;height:0;content:'';}
+.i_c_tips .i_c_tips_c ul li{float:left;*display:inline;width:95px;height:22px;overflow:hidden;margin:3px 0;font-size:14px;line-height:22px;}
+.i_c_tips .i_c_tips_c ul li a{color:#666;}
+.i_c_tips .i_c_tips_c ul li a:hover{color:#f60;}
+
+
+/* =S detailPrimary 产品概览 ********************************************/
+.detailPrimary{width:1188px;min-height:320px;margin-left:auto;margin-right:auto;border:1px solid #dbdbdb;background-color:#fff;color:#555;}
+/* .priPic */
+.priPic{float:left;width:290px;padding:15px;}
+.priPic .pic img{display:block;}
+.priPic .pic{margin-bottom:5px;}
+.priPic .extend{}
+.priPic .extend a{float:left;padding-left:26px;margin:7px 35px 0 0;color:#555;line-height:18px;background:url('../images/ico_detail_item.png') no-repeat 0 0;}
+.priPic .extend a:hover{text-decoration: underline;}
+.priPic .extend a.fav{background-position:0 0;}
+.priPic .extend a.share{background-position:0 -22px;}
+.priPic .extend a.save{background-position:0 -45px;}
+/* .priInfo */
+.priInfo{float:left;width:542px;padding:0 30px;margin:15px 0;border-left:1px solid #dbdbdb;}
+.priInfo h1{font:700 22px/1.3 'microsoft yahei';color:#333;overflow: hidden;}
+.priInfo em.pri{font-size:34px;color:#f60;font-family:arial;font-weight: 700}
+.priInfo .tbBox table{border:1px solid #dbdbdb;border-collapse:collapse;width:100%;background-color:#f8f8f8;}
+.priInfo .tbBox table td{border:1px solid #dbdbdb;text-align:center;color:#999;padding:5px;line-height:1.5em;}
+.priInfo .tbBox table td .num{font:700 16px arial;color:#f60;}
+.priInfo .tbBox table a:hover{text-decoration: underline;color: #555;}
+.priInfo .des{border:1px solid #dbdbdb;padding:10px;line-height:24px;background-color:#f8f8f8;}
+/* .priSchool */
+.priSchool{float:right;position:relative;width:250px;border-left:1px solid #dbdbdb;background-color:#f9f9f9;}
+.priSchool .hd{height:75px;border-bottom:1px solid #dbdbdb;}
+.priSchool .hd dl{padding:20px 0 0 30px;}
+.priSchool .hd dl dt{float:left;width:40px;height:40px;}
+.priSchool .hd dl dt img{border:1px solid #ddd;}
+.priSchool .hd dl dd a{float:left;width:145px;padding-left:10px;font:14px/18px 'microsoft yahei';text-decoration: underline;}
+.priSchool .bd ul{padding:10px 20px 10px 30px;}
+.priSchool .bd ul li{line-height:18px;color:#555;margin:6px 0;}
+.priSchool .ft{position:absolute;bottom:0;left:0;width:100%;height:52px;border-top:1px solid #dbdbdb;}
+.priSchool .ft .enter a{width:120px;height:32px;margin-top:10px;line-height:32px; font-size:14px;font-weight:700;text-align:center;color:#999;}
+.priSchool .ft .enter a:hover{color:#1cb177;}
+.priSchool .ft .enter .a1{border-right:1px solid #dbdbdb;}
+.priSchool .ft .enter .a2{border-left:1px solid #fff;}
+
+/* =S 详情页 预览信息 bdInfo > 购买类型 */
+.extra_gmlx .gmlx_here .i,
+.extra_gmlx_select .close,
+.gmlx_bf_tips .i_arrow{background:url('../images/tips_bg_zj.png') no-repeat 0 -30px;}
+.extra_gmlx{line-height:24px;}
+.extra_gmlx .close{display:none}
+.extra_gmlx .gmlx_zk,
+.extra_gmlx .gmlx_bf{display:block;padding:0 15px;height:22px;border:1px solid #dbdbdb;line-height:22px;background:#fff;cursor:pointer;}
+.extra_gmlx .gmlx_here{position:relative;border:1px solid #f60;cursor:default}
+.extra_gmlx .gmlx_here .i{display:block;position:absolute;bottom:0;right:0;width:12px;height:12px;overflow:hidden;background-position:0 -30px;}
+.extra_gmlx_select{position:relative;border:1px solid #FFE0C5;background:#FFFBEC;padding:12px 15px;}
+.extra_gmlx_select .close{display:block;position:absolute;top:10px;right:10px;width:9px;height:9px;overflow:hidden;background-position:0 -7px;}
+.extra_gmlx_select .close:hover{background-position:0 -17px;}
+
+.gmlx_bf_tips{position:relative;width:220px;border:1px solid #f60;padding:5px 10px;*padding-bottom:0px;margin-left:60px;margin-top:10px;background:#fff;line-height:14px;}
+.gmlx_bf_tips .i_arrow{display:block;position:absolute;top:-6px;left:110px;width:12px;height:6px;overflow:hidden;background-position:0 0;}
+.extra_gmlx_btn{margin-left:60px;}
+.extra_gmlx_txt{margin-left:60px;}
+/* =E 详情页 预览信息 bdInfo > 购买类型 */
+
+/* =S 按钮 立刻购买/加入购物车/立刻试听 */
+.a_btn1{display:inline-block;*display:inline;*zoom:1;width:184px;height:48px;overflow:hidden;text-align:center;font:300 20px/48px 'microsoft yahei';vertical-align:middle;background-color:#FC8900;color:#fff;}
+.a_btn1:hover{color:#fff;background-color:#E37D00;}
+.a_btn2{display:inline-block;*display:inline;*zoom:1;width:184px;height:48px;overflow:hidden;text-align:center;font:300 20px/48px 'microsoft yahei';vertical-align:middle;background-color:#1CB177;color:#fff;}
+.a_btn2:hover{color:#fff;background-color:#179160;}
+.a_btn3{display:inline-block;*display:inline;*zoom:1;width:184px;height:48px;overflow:hidden;text-align:center;font:300 20px/48px 'microsoft yahei';vertical-align:middle;background-color:#7B7B7B;color:#fff;cursor: default;}
+.a_btn3:hover{color:#fff;background-color:#7B7B7B;}
+.a_btn4{display:inline-block;*display:inline;*zoom:1;padding:0 10px;height:40px;overflow:hidden;text-align:center;font:300 14px/40px 'microsoft yahei';vertical-align:bottom;background-color:#5BC79D;color:#fff;border:1px solid #1CB177;}
+.a_btn4:hover{background-color:#1CB177;color:#fff;}
+
+.a_lkgm{display:inline-block;*display:inline;*zoom:1;width:184px;height:48px;overflow:hidden;text-indent:-999em;background:url('../images/btn_lkgm.png') no-repeat 0 0;vertical-align:middle;}
+.a_jrgwc{display:inline-block;*display:inline;*zoom:1;width:184px;height:48px;overflow:hidden;text-indent:-999em;background:url('../images/btn_jrgwc.png') no-repeat 0 0;vertical-align:middle;}
+.a_kcyts{display:inline-block;*display:inline;*zoom:1;width:184px;height:48px;overflow:hidden;text-indent:-999em;background:url('../images/btn_kcyts.png') no-repeat 0 0;vertical-align:middle;}
+.a_lkst{display:inline-block;*display:inline;*zoom:1;width:100px;height:42px;overflow:hidden;text-indent:-999em;background:url('../images/btn_lkst.png') no-repeat 0 0;vertical-align:bottom;}
+/* =E 按钮 立刻购买/加入购物车/立刻试听 */
+
+/* =E detailPrimary 产品概览 ********************************************/
+
+
+/* =START .detailContent 详情页内容 ********************************************/
+.detailContent{width:1190px;margin-left:auto;margin-right:auto;}
+.detailContent .detailCrumb{clear:both;height:20px;padding:10px 0;}
+.detailContent .sectionTop{/*min-height:310px;*/margin-bottom:20px;}
+.detailContent .sectionMain{clear:both;}
+.detailContent .st_main{float:left;width:772px;}
+.detailContent .sm_main{float:right; width:970px;}
+.detailContent .sm_side{float:left;width:200px;}
+.detailContent .bdTitle{height:35px;clear:right;font-weight:bold;}
+.detailContent .bdPic{width:356px;height:269px;}
+.detailContent .bdInfo{width:406px;/*height:269px;*/}
+.detailContent .bdInfo .i_help{position:relative;top:-2px;}
+.detailContent .bdInfo .btn_near{display:inline-block;padding:11px 18px;border:1px solid #d3e5f3;background:#f4fafe;margin-top:2px;}
+.detailContent .bdTabs{width:970px;z-index:99;height:40px;}
+.detailContent .bdBox{min-height:600px;}
+
+.detailContent .bd_tabs{height:30px;margin-bottom:1px;background:#FCFCFC;}
+
+/* =END .detailContent 详情页内容 ********************************************/
+
+/* =S bdStudent 听课学生 ********************************************/
+.bdStudent{border:1px solid #dbdbdb;background:#fff;}
+.bdStudent .hd{border:1px solid #fff;border-bottom:none;background:#f9f9f9;}
+.bdStudent .hd h4{height:38px;line-height:38px;padding-left:12px;border-bottom:1px solid #dbdbdb;color:#555;}
+.bdStudent .bd{position:relative;}
+.bdStudent .bd .ulBox{width:176px;overflow:hidden;padding:13px 11px 3px;}
+.bdStudent .bd ul{margin-right:-10px;}
+.bdStudent .bd li{_display:inline;float:left;width:50px;height:50px;margin:0 10px 10px 0;}
+.bdStudent .bd .more{position:absolute;top:-26px;right:0;font-family:'simsun';}
+/* =E bdStudent 听课学生 ********************************************/
+
+
+/* =S bdSort1 课程分类 ********************************************/
+.bdSort1{border:1px solid #dbdbdb;border-top:none;background:#fff;}
+.bdSort1 .hd{border:1px solid #fff;border-bottom:none;background:#f9f9f9;}
+.bdSort1 .hd h4{height:38px;line-height:38px;padding-left:12px;color:#555;}
+.bdSort1 .bd{margin:0 7px 0 7px;}
+.bdSort1 ul{padding:0px 0px 15px;}
+.bdSort1 ul li{border-bottom:1px dotted #dadbdb;padding:10px;color:#777;}
+.bdSort1 li dd{color:#999;padding:8px 0 0 28px;color:#999;}
+.bdSort1 li .sub_type{}
+.bdSort1 li .sub_type i.epd{display:inline-block;cursor:pointer;width:14px;height:14px;overflow:hidden;background:url('../images/ico_detail_item.png') no-repeat 0 -132px;}
+.bdSort1 li .sub_type a{color:#555;font-weight:bold;}
+.bdSort1 li dd a{color:#777;}
+.bdSort1 li dd a:hover{text-decoration: underline;}
+.bdSort1 li.unfold dl{display:none;}
+.bdSort1 li.unfold .sub_type i.epd{background-position: 0 -104px;}
+.bdSort1 li.last{border-bottom:none;}
+/* =E bdSort1 课程分类 ********************************************/
+
+
+/* =S bdFav 购买/收藏排行榜********************************************/
+.bdFav{border:1px solid #dbdbdb;background:#fff;border-top:none;}
+.bdFav .hd{height:40px;background:url('../images/bg_h_title.png') repeat-x 0 0;}
+.bdFav .hd li{float:left;width:98px;height:40px;font:700 14px/40px 'simsun';text-align:center;cursor:pointer;background:#f9f9f9;color:#aaa;}
+.bdFav .hd li.tab1{border-right:1px solid #dbdbdb;}
+.bdFav .hd li.tab2{width:99px;}
+.bdFav .hd li.curr{background:#fff;color:#555;}
+.bdFav .bd{}
+.bdFav .bd ul{margin:0 7px -1px 7px;}
+.bdFav .bd li a{color:#777;}
+.bdFav .bd li a:hover{color:#f60;}
+.bdFav .bd li .bm_count{margin-bottom:10px;color:#999;}
+.bdFav .bd li .c_pic{float:left;width:60px;height:45px;overflow:hidden;background:#000;}
+.bdFav .bd li .c_pic a{display:block;width:60px;height:45px;}
+.bdFav .bd li .c_pic a:hover{opacity:.9;filter:alpha(opacity=90);}
+.bdFav .bd li .c_name{float:left;width:94px;margin-left:8px;}
+.bdFav .bd li .c_name a{color:#666;}
+.bdFav .bd li .c_name a:hover{text-decoration: underline;}
+.bdFav .bd li .c_num{display:inline-block;position:absolute;left:-3px;top:5px;width:14px;height:14px;background:#1cb177;color:#fff;text-align:center;}
+.bdFav .bd li{clear:both;float:left;position:relative;*display:inline;width:162px;padding:5px 3px 8px 15px;border-bottom:1px dotted #ccc;}
+.bdFav .bd li dt{float:left;width:60px;height:45px; margin-right:10px;}
+.bdFav .bd li dd{/*white-space:nowrap;overflow:hidden;*/}
+.bdFav .ft{padding:12px 20px 12px;}
+.bdFav .ft a{display:block;border:1px solid #dbdbdb;line-height:22px;text-align:center;color:#999;background:#fafafa;}
+.bdFav .ft a:visited{color:#999;}
+.bdFav .ft a:hover{color:#777;background:#fdfdfd;}
+/* =E bdFav 购买/收藏排行榜********************************************/
+
+
+/* =S 右侧 tabs切换  bdTabs ********************************************/
+.bdTabs{border-bottom:1px solid #dbdbdb;}
+.bdTabs.fixed{width:1190px;position:fixed;top:0px;z-index:9999;margin-left:-220px;}
+.bdTabs ul{position:relative;height:40px;border:1px solid #dbdbdb;background:#f9f9f9;}
+.bdTabs.fixed ul{width:1188px;}
+.bdTabs ul li{float:left;width:238px;height:40px;color:#555;font:700 14px/40px 'simsun';background:url('../images/bg_detail_tabs.png') no-repeat 0 0;cursor:pointer;text-indent:99px;border-right:1px solid #dbdbdb;border-bottom:1px solid #dbdbdb;}
+.bdTabs ul li.c_jg,
+.bdTabs ul li.c_gm{display:none;width:219px;background:#f9f9f9;text-indent:0;text-align:center;cursor:default;}
+.bdTabs ul li.c_gm{border-right:none;width:250px;}
+.bdTabs ul li.c_jg i{padding:0 5px;color:#f60;font:300 24px/30px 'microsoft yahei';}
+.bdTabs ul li.c_jj{background-position:0 -41px;}
+.bdTabs ul li.c_ml{background-position:-243px -41px;text-indent:102px;}
+.bdTabs ul li.c_pj{background-position:-486px -41px;text-indent:90px;}
+.bdTabs.fixed li.c_jg,
+.bdTabs.fixed li.c_gm{display:block;}
+.bdTabs ul li.c_jj.curr{background-position:0 0;}
+.bdTabs ul li.c_ml.curr{background-position:-243px 0;}
+.bdTabs ul li.c_pj.curr{background-position:-486px 0;}
+.bdTabs ul li.curr{color:#fff;border-bottom-color:#1CB177}
+/* =E 右侧 tabs切换  bdTabs ********************************************/
+
+/* =START 详情页 sm_main .bdBox   ********************************************/
+	/* bdBox_con */
+	.bdBox_con{border:1px solid #dbdbdb;border-top:none;min-height:200px;background:#fff;}
+
+
+	/* =S 详情页 课程简介  con_intro
+	/////////////////////////////////////////////////////*/
+	.detail_steps{display:inline-block;width:930px;height:50px;background:url('../images/bg_detail_step.png') no-repeat 0 0;}
+	.con_intro{padding:0 20px;}
+	.con_intro_bar{height:40px;font:700 14px/40px 'simsun';background:#f9f9f9;text-indent:20px;color:#168B5C;}
+	.con_intro_bd{font:300 12px/2 'simsun',sans-serif;padding:10px 0;}
+	.con_intro_bd img{display:inline;max-width:890px;}
+	.con_intro_bd p{color:#555;font-family:"simsun";font-size:12px;line-height:1.6;margin:5px 0 15px;text-indent:25px;}
+	.con_intro_bd s{text-decoration:line-through}
+	.con_intro_bd strong{font-weight:700}
+	.con_intro_bd em{font-style:italic}
+	.con_intro_bd u{text-decoration:underline}
+	.con_intro_bd sup{vertical-align:super}
+	.con_intro_bd sub{vertical-align:sub}
+	.con_intro_bd blockquote{display:block;margin:1em 40px}
+	.con_catalog_bar{height:40px;font:700 14px/40px 'simsun';background:#f9f9f9;text-indent:20px;color:#168B5C;border-bottom:1px solid #dbdbdb;}
+	.con_catalog_bar .n_btn30g{text-indent:0;}
+	/* =E 详情页 课程简介  con_intro
+	/////////////////////////////////////////////////////*/
+
+
+	/* =S 详情页 课程目录  con_catalog
+	/////////////////////////////////////////////////////*/
+	.kcxq{padding-bottom:15px;border:1px solid #dbdbdb;background:#fff;}
+	.kcxq .con_catalog{margin:0 auto;}
+	.kcxq .con_catalog_bar .bar_txt{font:normal 12px/30px 'simsun';margin-right:10px;color:#555;}
+	.kcxq .con_catalog_hd{font:bold 16px/30px 'microsoft yahei';color:#555;padding:10px 25px 0px;margin:14px 0 8px;}
+	.kcxq .con_catalog_bd{padding:0 25px;}
+	.kcxq .con_catalog_list{margin-bottom:6px;}
+	.kcxq .con_catalog_list .catalog_list_hd{height:30px;margin-bottom:-1px;}
+	.kcxq .con_catalog_list .catalog_list_hd:hover{}
+	.kcxq .con_catalog_list .catalog_list_num{float:left;width:50px;color:#333;font:normal 12px/30px 'simsun';}
+	.kcxq .con_catalog_list .catalog_list_tit{float:left;width:825px;margin-left:25px;font:bold 12px/30px 'simsun';color:#555;position:relative;background:url('../images/bg_list_point.png') repeat-x 0 9px;}
+	.kcxq .con_catalog_list .catalog_list_tit p{float:left;white-space:nowrap;overflow:hidden;background:#fff;padding-right:30px;font:700 14px/30px "宋体";margin-left:-5px;_margin-left:0;color:#999;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circle{width:19px;height:19px;background:url('../images/catalog_sprite.png') no-repeat 0 0;position:absolute;left:-10px;top:12px;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circle_,
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circle_F,
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circle_H,
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circleH,
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circleF{width:19px;height:19px;background:url('../images/catalog_sprite.png') no-repeat 0 -29px;position:absolute;left:-10px;top:12px;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circleH{background-position:-20px 0}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circleF{background-position:-40px 0}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circle_H{background-position:-20px -29px}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_circle_F{background-position:-40px -29px}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_arrow_d{display:inline-block;*display:inline;*zoom:1;width:17px;height:17px;line-height:17px;overflow:hidden;background:url('../images/catalog_sprite.png') no-repeat -20px -73px;vertical-align:middle;position:absolute;right:15px;top:12px;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_arrow_d:hover{background:url('../images/catalog_sprite.png') no-repeat -20px -73px;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_arrow_u{display:inline-block;*display:inline;*zoom:1;width:17px;height:17px;line-height:17px;overflow:hidden;background:url('../images/catalog_sprite.png') no-repeat -20px -114px;vertical-align:middle;position:absolute;right:15px;top:12px;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_arrow_u:hover{background:url('../images/catalog_sprite.png') no-repeat -20px -114px;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_time{font:100 12px/30px Arial;text-align:center;float:right;padding-left:30px;background:#fff;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_time .preview{display:inline-block;*display:inline;*zoom:1;padding-left:25px;height:30px;line-height:30px;background:url('../images/ico_detail_item.png') no-repeat 0 -156px;color:#168B5C;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_time .preview:hover{text-decoration:underline;}
+	.kcxq .con_catalog_list .catalog_list_tit .clt_preview{width:35px;position:absolute;font:bold 14px/44px Arial;color:#7FB746;top:0;right:105px;text-align:center;padding-left:20px;background:url('../images/catalog_sprite.png') no-repeat 0 -133px;}
+	.kcxq .con_catalog_list .catalog_list_tit .iVideo,
+	.kcxq .con_catalog_list .catalog_list_tit .iMedia{position:absolute;top:9px;left:-31px;}
+	.kcxq .con_catalog_list .catalog_list_tit .iMusic{position:absolute;top:13px;right:195px;z-index:99;}
+	.kcxq .con_catalog_list .catalog_list_info{margin-left:50px;padding:8px 65px 3px 21px;_padding-left:25px;line-height:22px;/*_height:158px;*/}
+	.kcxq .con_catalog_list .catalog_list_avatar{width:24px;height:24px;margin:0 5px;}
+	.kcxq .con_catalog_list .catalog_list_avatar img{width:24px;height:24px;}
+	.kcxq .con_catalog_list .catalog_list_video{position:relative;*zoom:1;margin-right:-20px;background:#fff;_height:136px;}
+	.kcxq .con_catalog_list .catalog_list_video li{float:left;width:94px;margin: 10px 20px 0 0;*display:inline;}
+	.kcxq .con_catalog_list .catalog_list_video li a{display:block;width:94px;height:126px;overflow:hidden;}
+	.kcxq .con_catalog_list .catalog_list_video li img{width:90px;height:68px;border:1px solid #dbdbdb;padding:1px;}
+	/* =E 详情页 课程目录  con_catalog
+	/////////////////////////////////////////////////////*/
+
+
+	/* =S 详情页 课程评价  con_comment by sunpeng 20130510
+	/////////////////////////////////////////////////////*/
+	.con_comment{border-top:1px solid #dbdbdb;}
+	.con_comment .comm_pjxq{padding:13px 25px;background:#f2f2f2;}
+	.con_comment_hd{height:55px;padding:10px 0 10px 10px;border-bottom:1px dotted #ccc;position:relative;}
+	.con_comment_hd .con_comment_hd_t{font:bold 12px/55px 'simsun';color:#333;}
+	.con_comment_hd .percent{font:100 46px/55px Arial;color:#f60;position:absolute;left:95px;top:10px;}
+	.con_comment_hd .con_comment_num{display:inline-block;*display:inline;*zoom:1;height:55px;line-height:55px;margin:0 25px 0 205px;padding-right:25px;border-right:1px solid #eee;}
+	.con_comment_bd{padding:0 25px;}
+	.con_comment_bd li{border-bottom:1px dotted #ccc;padding:15px 0;}
+	.con_comment_bd li .com_avatar{width:60px;height:60px;float:left;border:1px solid #dbdbdb;}
+	.con_comment_bd li .com_avatar img{width:60px;height:60px;}
+	.con_comment_bd li .com_body{padding-left:80px;float:none;}
+	.con_comment_bd li .com_body .com_body_hd{height:25px;position:relative;}
+	.con_comment_bd li .com_body .com_body_hd .com_time{position:absolute;right:10px;top:0;color:#999;}
+	.con_comment_bd li .com_body .com_body_bd{position:relative;color:#777;line-height:22px;}
+	.con_comment_bd li .com_body .com_body_txt{position:relative;*zoom:1;word-wrap:break-word;word-break:normal;}
+	.con_comment_bd li .com_body .txt_con{float:left;word-wrap:break-word;word-break:break-all;}
+	.con_comment_bd li .com_body .com_body_bd .reply{float:right;position:absolute;right:0px;bottom:0px;min-width:50px;background:#fff;text-align:center;}
+	.con_comment_bd li .reply a{color:#555;}
+	.con_comment_bd li .reply a:hover{text-decoration: underline;}
+	.con_comment_bd li .con_reply_bd{border:1px solid #e3efea;padding:10px 10px 0;margin-top:15px;position:relative;*zoom:1;}
+
+	.con_comment_bd li .con_reply_bd .arrow{width:18px;height:9px;position:absolute;top:-9px;_top:-8px;right:35px;background:url('../images/comment_sprite.png') no-repeat 0 0;}
+	.con_comment_bd li .con_reply_bd .arrow_s{width:13px;height:8px;position:absolute;top:-8px;_top:-7px;right:18px;background:url('../images/comment_sprite.png') no-repeat 0 -14px;}
+	.con_comment_bd li .con_reply_bd .replay_box{border:1px solid #E7F0EC;padding:14px;background:#F2F2F2;margin-bottom:-1px;position:relative;}
+	.con_comment_bd li .con_reply_bd .replay_box .form_text{width:98%;}
+	.con_comment_bd li .replay_btn{height:22px;padding-top:10px;}
+	.con_comment_bd li .replay_box_bd{position:relative;border-top:1px solid #E7F0EC;padding:10px 0;}
+	.con_comment_bd li .com_avatar_s{width:40px;height:40px;border:1px solid #E6E6E6;float:left;margin-top:3px;}
+	.con_comment_bd li .com_avatar_s img{width:40px;height:40px;}
+	.con_comment_bd li .replay_box_bd .replay_box_con{padding-left:50px;float:none;}
+	.con_comment_bd li .com_add_comment{padding-top:10px;}
+	.con_comment .c_ibox{padding:12px 20px;border:1px solid #eee;background:#fcfcfc;}
+	/* =E 详情页 课程评价
+	/////////////////////////////////////////////////////*/
+/* =END 详情页 sm_main .bdBox   ********************************************/

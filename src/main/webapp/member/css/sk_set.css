@@ -1,0 +1,126 @@
+body.pageSet{background:#f0f0f0;}
+
+
+.set_wrap{width:1190px;margin:20px auto 30px;}
+.set_sidebar{float:left;width:188px;}
+.set_content{float:right;width:978px;margin-bottom:30px;border:1px solid #ccc;background:#fff;overflow:hidden;}
+.set_content .none_content{padding:90px 0;font:300 16px/20px 'microsoft yahei';color:#999;text-align:center;}
+
+
+.set_sidebar .nav_hd{margin:6px 0 15px;padding-left:10px;height:18px;border-left:5px solid #1d7ad9;font:700 16px/18px 'simsun';color:#333;}
+.set_sidebar .sidetab{border:1px solid #ccc;background:#fff;}
+.set_sidebar li{height:40px;font:300 14px/40px 'simsun';overflow:hidden;}
+.set_sidebar li a{display:block;text-indent:60px;background:url('http://res.ckimg.com/sites/www/v2/images/public/ico_set_item.png') no-repeat 0 0;color:#525252;}
+.set_sidebar li a:hover{background-color:#f2f2f2}
+.set_sidebar li a.icoR_11{background-position:30px 13px;}
+.set_sidebar li.curr a.icoR_11{background-position:-158px 13px;}
+.set_sidebar li a.icoR_12{background-position:30px -18px;}
+.set_sidebar li.curr a.icoR_12{background-position:-158px -18px;}
+.set_sidebar li a.icoR_13{background-position:30px -49px;}
+.set_sidebar li.curr a.icoR_13{background-position:-158px -49px;}
+.set_sidebar li a.icoR_14{background-position:30px -82px;}
+.set_sidebar li.curr a.icoR_14{background-position:-158px -82px;}
+.set_sidebar li a.icoR_15{background-position:30px -114px;}
+.set_sidebar li.curr a.icoR_15{background-position:-158px -114px;}
+.set_sidebar li a.icoR_16{background-position:30px -360px;}
+.set_sidebar li.curr a.icoR_16{background-position:-158px -360px;}
+.set_sidebar li a.icoR_17{background-position:30px -398px;}
+.set_sidebar li.curr a.icoR_17{background-position:-158px -398px;}
+.set_sidebar li a.icoR_18{background-position:30px -435px;}
+.set_sidebar li.curr a.icoR_18{background-position:-158px -435px;}
+.set_sidebar li a.icoR_19{background-position:30px -471px;}
+.set_sidebar li.curr a.icoR_19{background-position:-158px -471px;}
+
+
+.set_sidebar li.curr a{background-color:#EFEFEF;font-weight:700;}
+
+
+/*个人资料*/
+.personal_info{}
+.personal_info .pi_bd{padding-top:45px;font-size:14px;color:#777;}
+.personal_info .form_label{width:235px;}
+.personal_info textarea{width:340px;height:140px;}
+
+/*设置头像*/
+.avatar_set .as_hd{padding:45px 0 0 70px;}
+.avatar_set .left_part{float:left;width:340px;border-right:1px solid #E5E5E5;}
+.avatar_set .pic_view{position:relative;width:280px;height:280px;background:#f5f5f5;text-align:center;}
+.avatar_set .pic_view .tips{display:inline-block;margin-top:131px;font:300 12px/18px 'microsoft yahei';color:#999;}
+.avatar_set .right_part{float:left;padding-left:62px;}
+.avatar_set .ava_list li{float:left;color:#999;}
+.avatar_set .ava_big .pic{width:150px;height:150px;background:#f5f5f5;}
+.avatar_set .ava_big .pic img{display:block;width:150px;height:150px;}
+.avatar_set .ava_mid .pic{width:110px;height:110px;background:#f5f5f5;}
+.avatar_set .ava_mid .pic img{display:block;width:110px;height:110px;}
+.avatar_set .ava_mid{padding:40px 0 0 40px;}
+.avatar_set .ava_small .pic{width:40px;height:40px;background:#f5f5f5;}
+.avatar_set .ava_small .pic img{display:block;width:40px;height:40px;}
+.avatar_set .ava_small{padding:110px 0 0 40px;}
+
+/*账号绑定*/
+.account_bind .ab_bd{padding:32px 30px 60px;color:#525252;font-size:14px;}
+.account_bind .left_part{float:left;width:515px;padding-right:35px;border-right:1px solid #ccc;}
+.account_bind .ab_item{height:40px;margin-bottom:20px;background:url('http://res.ckimg.com/sites/www/v2/images/public/ico_set_item.png') repeat-x 0 -228px;color:#777;}
+.account_bind .ab_item .ab_l{float:left;padding-right:10px;background:#fff;}
+.account_bind .ab_item .ab_r{float:right;width:170px;background:#fff;}
+.account_bind .ab_item .acc_curr,
+.account_bind .ab_item .acc_binded,
+.account_bind .ab_item .bind_now{display:inline-block;padding:10px 0 10px 40px;height:20px;line-height:20px;background:url('http://res.ckimg.com/sites/www/v2/images/public/ico_set_item.png') repeat-x 11px -273px;}
+.account_bind .ab_item .acc_binded{background-position:11px -315px}
+.account_bind .ab_item .bind_now{background-position:11px -148px;}
+.account_bind .item_tips{margin-bottom:20px;padding:11px 20px;background:#f9f9f9;color:#777;}
+.account_bind .right_part{float:left;padding:0 0 0 30px;width:325px;line-height:22px;color:#777;}
+
+/*提醒设置*/
+.tip_set .ts_bd{padding-bottom:50px;}
+.tip_set .ts_title{height:58px;padding-left:25px;font:700 14px/58px 'simsun';border-bottom:2px solid #1d7ad9;color:#333;}
+.tip_set .ts_con{padding:30px 0 0 100px;font-size:14px;margin-bottom:60px;}
+.tip_set .ts_con .ico_1,
+.tip_set .ts_con .ico_2{float:left;width:111px;height:111px;background:url('http://res.ckimg.com/sites/www/v2/images/public/bg_txsz.png') no-repeat 0 0;}
+.tip_set .ts_con .ico_1{background-position:0 -112px;}
+.tip_set .ts_con .right_part{float:left;width:610px;}
+
+/*账号安全*/
+.accout_safe .as_bd{}
+.accout_safe .tips_wrap{padding:85px 0 135px 0;font-size:14px;color:#777;}
+.accout_safe .as_title{height:58px;padding-left:25px;font:700 14px/58px 'simsun';border-bottom:2px solid #1d7ad9;color:#333;}
+.accout_safe .form_con{padding:45px 0;color:#777;font-size:14px;}
+.accout_safe .form_con .l_t{padding:0 0 20px 294px;color:#545454;font:700 14px/16px 'simsun';}
+.accout_safe .form_con .l_n{padding:0 0 20px 294px;}
+.accout_safe .form_label{width:378px;font-size:14px;color:#777;}
+.accout_safe .form_field{width:550px;font-size:14px;}
+.accout_safe .sub_title{height:40px;margin:0 20px;background:#f9f9f9;}
+.accout_safe .sub_title i{display:inline-block;padding:0 20px 0 10px;font:700 14px/40px 'simsun';color:#545454;background:url('http://res.ckimg.com/sites/www/v2/images/public/ico_set_item.png') no-repeat right -187px;}
+
+/*课程通知*/
+.class_msg{}
+.class_msg .c_list{padding:0 15px 20px;font-size:14px;}
+.class_msg .c_list li{position:relative;padding:18px 0;border-bottom:1px solid #ccc;}
+.class_msg .c_ig{color:#84C58C}
+.class_msg .a_detail{display:inline-block;position:absolute;right:20px;top:50%;margin-top:-10px;height:20px;line-height:20px;color:#0065cb;}
+.class_msg .c_list .txt{width:790px;margin-top:15px;color:#777;line-height:20px;}
+
+/*交易通知*/
+.deal_msg{}
+.deal_msg .c_list{padding:0 15px 20px;font-size:14px;}
+.deal_msg .c_list li{position:relative;padding:18px 0;border-bottom:1px solid #ccc;}
+.deal_msg .a_detail{display:inline-block;position:absolute;right:20px;top:50%;margin-top:-10px;height:20px;line-height:20px;color:#0065cb;}
+.deal_msg .c_list .txt{width:790px;margin-top:15px;color:#777;line-height:20px;}
+
+/*评论*/
+.comm_msg{}
+.comm_msg .c_list{padding:0 15px 20px;font-size:14px;}
+.comm_msg .c_list li{padding:18px 0;border-bottom:1px solid #ccc;}
+.comm_msg .c_list .pic{float:left;width:60px;height:60px;}
+.comm_msg .c_list .pic img{display:block;width:60px;height:60px;}
+.comm_msg .c_list .content{float:left;width:846px;margin-left:18px;color:#777;}
+.comm_msg .c_list .c_name{color:#46BF8C}
+.comm_msg .content .txt{position:relative;width:814px;padding:10px 15px;border:1px solid #DCEFE4;background:#FAFAFA;}
+.comm_msg .content .arrow{position:absolute;top:-7px;left:40px;width:13px;height:8px;background:url('http://res.ckimg.com/sites/www/v2/images/public/ico_set_item.png') no-repeat 0 -526px}
+
+/*系统消息*/
+.system_msg{}
+.system_msg .c_list{padding:0 15px 20px;font-size:14px;}
+.system_msg .c_list li{position:relative;padding:18px 0;border-bottom:1px solid #ccc;}
+.system_msg .a_detail{display:inline-block;position:absolute;right:20px;top:50%;margin-top:-10px;height:20px;line-height:20px;color:#0065cb;}
+.system_msg .c_list .txt{width:790px;margin-top:15px;color:#777;line-height:20px;}

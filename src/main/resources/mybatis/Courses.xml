@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shareku.mapper.courses.CourseMapper">
+	<sql id="courseTableName">shareku_course</sql>
+	<sql id="courseColumns">
+		course_one, course_two, course_three, course_name, keywords, course_price, 
+    	valuations, discount, image_path, sales, lecturer, description, recommend, coursestatus, 
+    	date, file_path, page_title
+	</sql>
+
+	<resultMap type="Course" id="courseResultMap">
+		<id column="course_id" property="courseId" />
+		<result column="course_one" property="courseOne" jdbcType="INTEGER" />
+		<result column="course_two" property="courseTwo" jdbcType="INTEGER" />
+		<result column="course_three" property="courseThree" jdbcType="INTEGER" />
+		<result column="course_name" property="courseName" jdbcType="VARCHAR" />
+		<result column="keywords" property="keywords" jdbcType="VARCHAR" />
+		<result column="course_price" property="coursePrice" jdbcType="DECIMAL" />
+		<result column="valuations" property="valuations" jdbcType="DECIMAL" />
+		<result column="discount" property="discount" jdbcType="DECIMAL" />
+		<result column="image_path" property="imagePath" jdbcType="VARCHAR" />
+		<result column="sales" property="sales" jdbcType="INTEGER" />
+		<result column="lecturer" property="lecturer" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="editor1" property="editor1" jdbcType="VARCHAR" />
+		<result column="recommend" property="recommend" jdbcType="BIT" />
+		<result column="coursestatus" property="status" jdbcType="INTEGER" />
+		<result column="date" property="date" jdbcType="DATE" />
+		<result column="file_path" property="filePath" jdbcType="VARCHAR" />
+		<result column="page_title" property="pagetitle" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="listAllCourse" parameterType="Course" resultMap="courseResultMap">
+		select course_id, <include refid="courseColumns"/> from <include refid="courseTableName"/> c
+		where 1 = 1
+		<if test="courseName!=null and courseName!=''">
+			and c.course_name like "%"#{courseName}"%"
+		</if>
+		<if test="courseOne!=null and courseOne!=''">
+			and c.course_one = #{courseOne}
+		</if>
+		<if test="courseTwo!=null and courseTwo!=''">
+			and c.course_two = #{courseTwo}
+		</if>
+		<if test="courseThree!=null and courseThree!=''">
+			and c.course_three = #{courseThree}
+		</if>
+	</select>
+	
+	<select id="listPageCourse" parameterType="Course" resultMap="courseResultMap">
+		select course_id, <include refid="courseColumns"/> from <include refid="courseTableName"/> c
+		where 1 = 1
+		<if test="courseName!=null and courseName!=''">
+			and c.course_name like "%"#{courseName}"%"
+		</if>
+		<if test="courseOne!=null and courseOne!=''">
+			and c.course_one = #{courseOne}
+		</if>
+		<if test="courseTwo!=null and courseTwo!=''">
+			and c.course_two = #{courseTwo}
+		</if>
+		<if test="courseThree!=null and courseThree!=''">
+			and c.course_three = #{courseThree}
+		</if>
+	</select>
+	
+	<select id="getCourseById" parameterType="int" resultMap="courseResultMap">
+		select course_id, <include refid="courseColumns"/> from <include refid="courseTableName"/> c where c.course_id = #{courseId}
+	</select>
+	
+	<insert id="insertCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="courseId">
+		insert <include refid="courseTableName"/> (<include refid="courseColumns"/>) values (
+		#{courseOne},#{courseTwo},#{courseThree},#{ courseName},#{ keywords},
+		#{ coursePrice}, #{ valuations},#{ discount},#{ imagePath}, #{sales}, #{ lecturer},
+		#{ description}, #{ recommend},#{status}, #{ date},#{ filePath}, #{pagetitle} )
+	</insert>
+	<update id="updateCourse" parameterType="Course">
+		update
+		<include refid="courseTableName" />
+		set
+		course_one=#{courseOne},
+		course_two=#{courseTwo},
+		course_three=#{courseThree},
+		course_name=#{courseName},
+		keywords=#{keywords},
+		course_price=#{coursePrice},
+		valuations=#{valuations},
+		discount=#{discount},
+		image_path=#{imagePath},
+		sales=#{sales},
+		lecturer=#{lecturer},
+		description=#{description},
+		editor1=#{editor1},
+		recommend=#{recommend},
+		coursestatus=#{status},
+		date=#{date},
+		file_path=#{filePath},
+		page_title=#{pagetitle}
+		where course_id=#{courseId}
+	</update>
+	
+	<delete id="deleteCourse" parameterType="Course">
+		delete from <include refid="courseTableName"/> <!-- where course_id=#{courseId} -->
+		where course_id in
+		<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<insert id="addvideo" parameterType="Video" useGeneratedKeys="true" keyProperty="videoId">
+		insert shareku_video (course_id,file_path) values ( #{courseId},#{filePath} )
+	</insert>
+</mapper>

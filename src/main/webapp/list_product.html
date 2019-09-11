@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script src="js/jquery-1.3.2.min.js"></script>
+<script>
+	$(document).ready(function(){
+		var params = window.location.search;
+		//alert(params.indexOf('tid='));
+		var tid = params.substring(params.indexOf('=')+1,params.indexOf('&'));
+		var cName = params.substr(params.lastIndexOf('=')+1);
+		$.ajax({
+			type: "get",
+			url: "courses_class/detail.shtml?tid="+tid+"&cName="+cName,
+			dataType: "json",
+			success: function(data) {
+				var keywords = '';
+				var description = ''
+				for (var index in data) {
+					var value = data[index];
+					if(value !== "" && value !==null && value != undefined){
+						if(index == "keywords"){
+							$("[name='keywords']").attr('content',data[index]);
+						}
+						if(index == "description"){
+							$("[name='description']").attr('content',data[index]);
+						}
+					}
+				}
+			}
+		});
+	});
+	//var tid = getParameter("tid");
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>列表页_晒库网</title>
+<meta name="keywords" content="test,keywords" />
+<meta name="description" content="test,description" />
+<link rel="shortcut icon" type="/image/x-icon" href="/favicon.ico" />
+<link rel="stylesheet" href="css/base.css" media="screen" />
+<link rel="stylesheet" href="css/list.css" media="screen" />
+<style type="text/css">
+	/* 页码最外层div */
+	.page-bar {
+		/*border: 1px solid gray;
+		margin: 40px auto;*/
+		text-align: right;
+		padding: 8px;
+		/*font: 18px tahoma,arial,宋体,sans-serif;*/
+	}
+	/* span间隙控制 */
+	.page-bar span {
+		color: #999;
+		border: 1px solid #ccc;
+		display:inline-block;
+		*display:inline;
+		*zoom:1;
+		padding:5px 9px;
+		margin:0 3px;
+		background:#fff;
+		font:12px/14px 'simsun',arial,sans-serif;
+	}
+	.page-bar span.on {
+		display:inline-block;*display:inline;*zoom:1;padding:5px 9px;margin:0 3px;border:1px solid #f60;background:#FFFDE6;color:#f60;font:12px/14px 'simsun',arial,sans-serif;
+	}
+	.page-bar a{
+		color: #00f;
+		text-decoration: none;
+		/* 去除A标签默认的虚线框 */
+		outline: none;
+		hide-focus: expression(this.hideFocus=true);
+	}
+	.page-bar a span{
+		display:inline-block;
+		*display:inline;
+		*zoom:1;
+		padding:5px 9px;
+		margin:0 3px;
+		border:1px solid #ccc;
+		color:#555;
+		background:#fff;
+		font:12px/14px 'simsun',arial,sans-serif;
+	}
+	.page-bar .pageNum{display:inline-block;*display:inline;*zoom:1;padding:0px;margin:0 5px 0 15px;color:#555;font:12px/26px 'simsun',arial,sans-serif; vertical-align:middle; *margin-top:-9px;}
+	.page-bar .pageNum div{margin-right:5px;}
+	.page-bar .pageNum .ipt1{width:30px;height:14px;border:1px solid #ccc;padding:5px; font-size:12px; vertical-align:middle;margin:0 5px;}
+	.page-bar .pageNum .ipt2{font-size:12px;vertical-align:middle;margin:0 0 0 10px;width:45px;height:26px;border:none;background:url('images/btn_45x26.png') no-repeat;cursor:pointer;}
+</style>
+<script src="js/pageBreak.js"></script>
+<script src="js/jquery.common.js"></script>
+<script src="js/functions.js"></script>
+</head>
+
+<body class="ck_list">
+<script>
+	//加头部
+	document.writeln(header.toHtml());
+
+	function getClassList(curIndex, pageNo) {
+		//if (curIndex == parseInt($("#page .on").text())) return false;
+		var tId = getParameter("tid");
+		$.ajax({
+			type: "get",
+			url: "course/listByClass.shtml?tId=" + tId + "&index=" + curIndex + "&size=" + pageNo + "&t=" + Math.random(),
+			dataType: "json",
+			success: function(data) {
+				console && console.log(data);
+				var html = '';
+				for (var index in data) {
+					//如果为第一条数据，则直接路过
+					if (index == "0") continue;
+					
+					var o = data[index];
+					var cImg = o.imagePath;
+					var cName = o.courseName;
+					var price = o.coursePrice;
+					var cid = o.courseId;
+					var cUrl = "article_product.html?cid=" + cid;
+					html += '<li class="clearfix">'
+						  + '<a target="_blank" class="pic" href="' + cUrl + '">'
+						  + '<img src="' + tool.domain + cImg + '" alt="' + cName + '">'
+						  + '</a>'
+						  + '<div class="s_result_con ml15">'
+						  + '<h3><a href="#/1018455-83980.html" target="_blank">'
+						  + '<em class="c_f60"></em></a></h3>'
+						  + '<p class="c_555 pt10"><a target="_blank" href="' + cUrl + '">' + cName + '<em class="c_f60"></em></a>&nbsp;<img style="CURSOR: pointer" class="sk_talkIcon" onclick="javascript:window.open(&quot;http://b.qq.com/webc.htm?new=0&amp;sid=561779482&amp;o=shareku.com&amp;q=7&quot;, &quot;_blank&quot;, &quot;height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no&quot;);" border="0" src="http://wpa.qq.com/pa?p=1:561779482:10" alt="有事点这里哦"></p>'
+						  + '<p title="信用值：20724" class="c_999 pt5">学校信用：<img border="0" src="images//s32.gif"></p>'
+						  + '</div>'
+						  + '<div class="s_result_con s_result_price">'
+						  + '<p><b class="f16 c_f60 mr5">' + price + '</b>元</p>'
+						  + '<p class="c_999 pt10">共2课时</p>'
+						  + '</div>'
+						  + '<div class="s_result_con s_result_info">'
+						  + '<p class="pt5 c_999">377人购买</p>'
+						  + '<p class="pt10 c_999">满意度 100%</p>'
+						  + '<p class="pt10"><a class="c_777" target="_blank" href="#/1018455-83980.html#comment"><u>351 条评价</u></a></p>'
+						  + '</div>'
+						  + '<div class="s_result_con s_result_data">'
+						  + '<p class="pt5"><img src="images/ico_danbao.gif"><a class="ml5" target="_blank" href="#/question/id-3272__item_id-2037__rf-false"><i class="simsun">担保期15天</i></a></p>'
+						  + '</div>'
+						  + '</li>';
+				}
+				$("#cList>ul").eq(0).html(html);
+				//添加课程总数量
+				var itemCount = data[0]["itemCount"];
+				$("#count").html('共<i class="n">' + itemCount + '</i>个课程');
+				//类别标题
+				var title = getParameter("cName");
+				$("#classTitle").html(decodeURIComponent(title));
+				
+				//添加页码
+				var config = {
+					itemCount: itemCount,
+					styleTYPE: 2,
+					styleSIZE: 1,
+					pageNo: 5,
+					isEvenPageNo: "RIGHT",
+					index: curIndex,
+					size: pageNo,
+					first: "|<",
+					last: ">|",
+					prev: "<<",
+					next: ">>",
+					callBack: function(index, size) {
+						//alert(index + "||" + size);
+						getClassList(index, size);
+					}
+				};
+				var page = new PageBreak("page", config);
+				page.showPageBar();
+			}
+		});
+	}
+
+	function getSubClass() {
+		var tId = getParameter("tid");
+		$.ajax({
+			type: "get",
+			url: "course/listBySubClass.shtml?tId=" + tId + "&t=" + Math.random(),
+			dataType: "json",
+			success: function(data) {
+				console && console.log(data);
+				var html = '<ul class="clearfix">';
+				for (var index in data) {
+					var arr = data[index].split('|');
+					var name = arr[0];
+					var num = arr[1];
+					html += '<li>'
+						  + '<a href="list_product.html?tid=' + index + '&cName=' + encodeURIComponent(name) + '" target="_blank">' + name + '</a>（' + num + '）'
+						  + '</li>';
+				}
+				html += '</ul>';
+				$('#subClass').html(html);
+			}
+		});
+	}
+
+	function addListener(element, e, fn) {
+	    if (element.addEventListener) {
+	        element.addEventListener(e, fn, false);
+	    } else {
+	        element.attachEvent("on" + e, fn);
+	    }
+	}
+	$(function(){
+		//课程分类表
+		getCCdata();
+		//课程小分类
+		getSubClass();
+		//课程列表分页处理
+		getClassList(1, 10);
+		
+		$("li.liClient").mouseover(function(){
+			$("li.liClient > a").css('background','#179362');
+			$("#clientList").show();
+		}).mouseleave(function(){
+			$("li.liClient > a").css('background','');
+			$("#clientList").hide();
+		});
+		$("#head_searchSubmit").mouseover(function(){
+			$(this).parent().addClass('tp_txt_focus');
+		}).mouseleave(function(){
+			$(this).parent().removeClass('tp_txt_focus');
+		});
+		$(".topR_search").inputTips();
+		$("#head_searchKeywords").prev("span.iptTips").css({"left":"1px", "top":"0px"});
+
+		$("#searchType").click(function(){
+			var obj = $(this);
+			var pobj = $("#searchTypeList");
+			var course = $("#courseType").clone();
+			var school = $("#schoolType").clone();
+			obj.showMenu('#searchTypeList');
+			obj.mouseout(function(){
+				obj.hideMenu('#searchTypeList');
+			});
+			
+			pobj.find("a").click(function(){
+				var cobj = $(this);
+				obj.attr('stype', cobj.attr('stype')).html(cobj.text()+'<i class="icoR icoR_5"></i>');
+				if(cobj.attr('stype') == 'school'){
+					$("#courseType").remove();
+					$("#schoolType").after(course);
+				} else {
+					$("#schoolType").remove();
+					$("#courseType").after(school);
+				}
+				pobj.hide();
+			});
+		});
+		
+		$("#head_searchKeywords").keydown(function(event){
+			if(event.keyCode == 13){
+				$("#head_searchSubmit").trigger('click');
+			}
+		});
+		
+		$("#head_searchSubmit").click(function(){
+			var keywords = $.trim($("#head_searchKeywords").val()),
+			searchType = $("#searchType").attr('stype');
+			if(searchType == "course"){
+				if(keywords == ''){
+					searchUrl = "/course/index.html";	
+				}else{
+					searchUrl = "/course/_"+encodeURIComponent(keywords)+"_____.html";
+				}
+			}else{
+				searchUrl = "/?mod=search&act=school&keyword="+encodeURIComponent(keywords);
+			}
+			document.location.href = searchUrl;
+			return false;
+		});
+		$(window).scroll(function(){
+			if ($(window).scrollTop()>100){
+				$("li.r_gotop").fadeIn(750);
+			}else{
+				$("li.r_gotop").fadeOut(750);
+			}
+		});
+		addListener(document, "mouseover",function(evt) {
+		    var evt = window.event ? window.event: evt,
+		    target = evt.srcElement || evt.target;
+		    if(target.id == "btnWeixin") {
+		    	$("#btnWeixin").animate({left: '-66px'}, "fast");   
+		        return;
+		    }else if(target.id == "btnFeedbask"){
+		    	$("#btnFeedbask").animate({left: '-66px'}, "fast");   
+		        return;
+		    }else if(target.id == "btnGotop"){
+		    	$("#btnGotop").animate({left: '-66px'}, "fast");   
+		        return;
+		    }
+		});
+		addListener(document, "mouseout",function(evt) {
+		    var evt = window.event ? window.event: evt,
+		    target = evt.srcElement || evt.target;
+		    if(target.id == "btnWeixin") {
+		    	$("#btnWeixin").stop(true).animate({left: '0px'}, "fast");   
+		        return;
+		    }else if(target.id == "btnFeedbask"){
+		    	$("#btnFeedbask").stop(true).animate({left: '0px'}, "fast");   
+		        return;
+		    }else if(target.id == "btnGotop"){
+		    	$("#btnGotop").stop(true).animate({left: '0px'}, "fast");   
+		        return;
+		    }
+		}); 
+		
+		$("#weixinClose").click(function(){
+			$("#weixinCodeImg").hide();
+			$("#btnWeixin").css("display","block");		
+		});
+		$("#btnWeixin").click(function(){
+			$("#btnWeixin").css("display","none");
+			$("#weixinCodeImg").show();
+		});
+		$("#btnFeedbask").click(function(){
+			var popFeedbaskBox = $.skAjaxBoxy({
+				url:"/?mod=help&act=about&type=popfeed",
+				title:"意见反馈",
+				width:540,
+				height:424,
+				callbask:function(){
+					$("#cancel").click(function(){
+						popFeedbaskBox.cancel();
+					});
+					$("#FeedbaskType").change(function(){
+						$("#FeedbaskTypeErrorTips").hide();
+					});
+					$("#submit").click(function(){
+						$("#FeedbaskErrorTips,#FeedbaskTypeErrorTips").hide();
+						var type = $("#FeedbaskType").val();
+						var message = $("#FeedbaskMsg").val();
+						if(type == ''){
+							$("#FeedbaskTypeErrorTips").text('请选择问题类型').show();
+							return false;
+						}
+						if(message == ''){
+							$("#FeedbaskErrorTips").text('请填写反馈意见').show();
+							return false;
+						}
+						if(getStrActualLen(message) > 64000){
+							$("#FeedbaskErrorTips").text('反馈意见不得超过64000字符').show();
+							return false;
+						}
+						if($(this).attr('disabled') == true){
+							return false;
+						}
+						$.ajax({
+							type:"post",
+							url:"/?mod=help&act=about&type=popfeed&op=submit",
+							dataType:"json",
+							data:"type="+type+"&message="+encodeURIComponent(message),
+							beforeSend:function(){
+								$(this).attr("disabled",true);
+							},
+							success:function(ret){
+								if(ret.code == 0){
+									popFeedbaskBox.cancel();
+									$.skTipsBoxy({message:ret.data,width:300});
+								}else{
+									$(this).removeAttr("disabled");
+									alert(ret.data);
+								}
+							}
+						});
+					});
+					$("#divFbMsg").inputTips();
+					$("#FeedbaskType").divSelect(160);
+				}
+			});		
+		});
+
+					$("a.close_t").click(function(){
+			  	$("div.newBrand").slideUp();
+			  	$.cookie.set('web_notice', '1',999999999999);
+			});
+			});
+	</script>
+<div class="listContent mb20">
+  <section class="listMain" style="min-height:300px;">
+    <div class="lSortBox mb15" style="width:970px;">
+      <div class="hd">
+        <div class="crumb"> <a href="#/">首页</a> <span>&gt;</span> <a href="javascript:void(0);">所有分类</a> <span>&gt;</span> <span id="classTitle" class="s here">IT/计算机/互联网</span> </div>
+        <div id="count" class="count">共<i class="n">2260</i>个课程</div>
+      </div>
+      <div id="subClass" class="s_cate_list">
+      </div>
+    </div>
+    <div class="sltBar">
+      <ul class="sUl">
+        <li> <a class="i_s i_s_curr" href="#/course/72351163642544128______2.html">默认排序</a> </li>
+        <li> <a class="i_s i_si " href="#/course/72351163642544128__createtime_desc___2.html"><i class="i_s_up"></i>最新发布</a> </li>
+        <li> <a class="i_s i_si " href="#/course/72351163642544128__prelectstarttime_asc___2.html"><i class="i_s_up"></i>最近上课</a> </li>
+        <li> <a class="i_s i_si " href="#/course/72351163642544128__salenumber_desc___2.html"><i class="i_s_down"></i>销量</a> </li>
+        <li> <a class="i_s i_si " href="#/course/72351163642544128__goodrate_desc___2.html"><i class="i_s_down"></i>满意度</a> </li>
+        <li> <a class="i_s i_si " href="#/course/72351163642544128__cost_asc___2.html"><i class="i_s_down"></i>价格</a> </li>
+        <li>
+          <p id="cost_range"> <span class="input-text input-price"><span>
+            <input type="text" value="" id="minprice" class="price-field" />
+          </span><b>¥</b> </span> - <span class="input-text input-price"> <span>
+            <input type="text" value="" id="maxprice" class="price-field"/>
+            </span> <b>¥</b> </span> <a id="cost_search" style="display:none;" class="c_btn22 ml5" href="#/course/72351163642544128______2.html"><span>确定</span></a> </p>
+        </li>
+        <li class="list_type">
+          <label class="l_online" for="list_kkzx" style="display:none;">
+            <input type="checkbox" id="list_kkzx" />
+            <span class="ml5">KK在线</span></label>
+          <a class="type type1" href="#/course/72351163642544128______1.html"></a> <a class="type type2_curr" href="#/course/72351163642544128______2.html"></a> </li>
+      </ul>
+    </div>
+    <section class="litemBox mb20">
+      <div id="cList" class="s_result_list">
+        <ul>
+          <!--li class="clearfix"> <a target="_blank" class="pic" href="#/1018455-83980.html"><img src="uploads/41cf3c54bad8093f1bc498ceff51d022.thumb.jpg"></a>
+            <div class="s_result_con ml15">
+              <h3><a href="#/1018455-83980.html" target="_blank">PHP项目实战必修课<em class='c_f60'></em></a></h3>
+              <p class="c_555 pt10"><a target="_blank" href="#/s1018455.html">互联网技术就业速成班<em class='c_f60'></em></a>&nbsp;		<img  style="CURSOR: pointer" class="sk_talkIcon" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=561779482&o=shareku.com&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC=http://wpa.qq.com/pa?p=1:561779482:10 alt="有事点这里哦"></p>
+              <p title="信用值：20724" class="c_999 pt5">学校信用：<img border="0" src="images//s32.gif" /></p>
+            </div>
+            <div class="s_result_con s_result_price">
+              <p><b class="f16 c_f60 mr5">1.00</b>元</p>
+              <p class="c_999 pt10">共2课时</p>
+            </div>
+            <div class="s_result_con s_result_info">
+              <p class="pt5 c_999">377人购买</p>
+              <p class="pt10 c_999">满意度 100%</p>
+              <p class="pt10"><a class="c_777" target="_blank" href="#/1018455-83980.html#comment"><u>351 条评价</u></a></p>
+            </div>
+            <div class="s_result_con s_result_data">
+              <p class="pt5"><img src="images/ico_danbao.gif"><a class="ml5" target="_blank" href="#/question/id-3272__item_id-2037__rf-false"><i class="simsun">担保期15天</i></a></p>
+            </div>
+          </li-->
+        </ul>
+      </div>
+    </section>
+    <div id="page"></div>
+    <!--div id="page" class="ck_page cb tr"> <span class='curr'> 1 </span><a title='第2页' href='#/course/72351163642544128______2.html?page=2' class='ajaxLink'>2</a><a title='第3页' href='#/course/72351163642544128______2.html?page=3' class='ajaxLink'>3</a><a title='第4页' href='#/course/72351163642544128______2.html?page=4' class='ajaxLink'>4</a><a title='第5页' href='#/course/72351163642544128______2.html?page=5' class='ajaxLink'>5</a><span class='ellipsis'>...</span><a title='第226页' href='#/course/72351163642544128______2.html?page=226' class='ajaxLink'>226</a><a title='下一页' href='#/course/72351163642544128______2.html?page=2'  class='next ajaxLink'>下一页<s></s></a>
+      <div class="pageNum"><span>到第
+        <input type="text" class="ipt1" name="page" id="jumpPage" url="#/course/72351163642544128______2.html?page=" maxpage="226">
+        页
+        <input type="button" class="ipt2" value="" id="jumpBtn">
+        </span></div>
+    </div-->
+  </section>
+  <div class="listAside" style="min-height:300px;">
+    <section class="lt_tj">
+      <header class="lt_tj_hd">
+        <h3>课程推荐</h3>
+      </header>
+      <div class="lt_tj_bd">
+        <ul>
+          <li>
+            <dl class="picTxt">
+              <dt><a target="_blank" href="#/2014/weike"><img src="uploads/b23e0a5f5d8870bea0ca90c923d6655d.jpg" width="176" height="132" alt="几块钱的选择 新技能get" /></a></dt>
+              <dd><a target="_blank" href="#/2014/weike">你的选择决定你的"技能"</a></dd>
+              <dd><i class="n">几块钱的选择，新技能get</i></dd>
+            </dl>
+          </li>
+          <li>
+            <dl class="picTxt">
+              <dt><a target="_blank" href="#/2014/kaoyan"><img src="uploads/b23e0a5f5d8870bea0ca90c923d6655d.jpg" width="176" height="132" alt="2015考研大纲考研真题解析" /></a></dt>
+              <dd><a target="_blank" href=""#/2014/kaoyan">2015考研由你来决定</a></dd>
+              <dd><i class="n">最优秀考研名师大纲解析</i></dd>
+            </dl>
+          </li>
+          <li>
+            <dl class="picTxt">
+              <dt><a target="_blank" href="#/1211178-104944.html"><img src="uploads/06.jpg" width="176" height="132" alt="零基础包会FlappyBird" /></a></dt>
+              <dd><a target="_blank" href="#/1211178-104944.html">零基础包会FlappyBird</a></dd>
+              <dd>价格：￥<i class="n">30</i></dd>
+            </dl>
+          </li>
+          <li>
+            <dl class="picTxt">
+              <dt><a target="_blank" href="#/1404350-99062.html"><img src="uploads/14.jpg" width="176" height="132" alt="微信营销入门几个要点" /></a></dt>
+              <dd><a target="_blank" href="#/1404350-99062.html">微信营销入门几个要点</a></dd>
+              <dd>价格：￥<i class="n">10</i></dd>
+            </dl>
+          </li>
+          <li>
+            <dl class="picTxt">
+              <dt><a target="_blank" href="#/1020057-105189.html"><img src="uploads/29.jpg" width="176" height="132" alt="这次真正爱上日语" /></a></dt>
+              <dd><a target="_blank" href="#/1020057-105189.html">这次真正爱上日语</a></dd>
+              <dd>价格：￥<i class="n">29</i></dd>
+            </dl>
+          </li>
+          <li>
+            <dl class="picTxt">
+              <dt><a target="_blank" href="#/1032537-75941.html"><img src="uploads/35.jpg" width="176" height="132" alt="帮你快速搞定法语词汇"/></a></dt>
+              <dd><a target="_blank" href="#/1032537-75941.html">帮你快速搞定法语词汇</a></dd>
+              <dd>价格：￥<i class="n">40</i></dd>
+            </dl>
+          </li>
+          <li>
+            <dl class="picTxt">
+              <dt><a target="_blank" href="#/1800632-105379.html"><img src="uploads/41.jpg" width="176" height="132" alt="性感肚皮舞跳起来" /></a></dt>
+              <dd><a target="_blank" href="#/1800632-105379.html">性感肚皮舞跳起来</a></dd>
+              <dd>价格：￥<i class="n">99</i></dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <s class="clearfix"></s> </div>
+<!-- =E listContent -->
+<script>
+$(function(){
+	var cost_focus = 0;
+	
+	
+	$("#cost_range").mouseover(function(){
+		cost_focus = 1;
+	}).mouseout(function(){
+		cost_focus = 0;
+	});
+	
+	$(".price-field").focus(function(){
+		$("#cost_search").show();
+	}).blur(function(){
+		if (cost_focus == 0) {
+			$("#cost_search").hide();
+		}
+	});
+
+	$("#cost_search").click(function(){
+		var minprice = $("#minprice").val();
+		var maxprice = $("#maxprice").val();
+
+		if ((minprice && !/^\d+$/.test(minprice)) || (maxprice && !/^\d+$/.test(maxprice))){
+			$.ckAlert({message:'价格格式填写不正确，只能为整数'});
+			return false;
+		}
+		if(minprice == '' && maxprice == ''){
+			var url = "/course/______2.html";
+		}else{
+			var url = "/course/72351163642544128____";
+			url = url + minprice + '_'+maxprice+'_2.html';
+		}
+		location.href = url;
+		return false;
+	});
+
+	$("#jumpPage").keydown(function(event){
+		if(event.keyCode == 13){
+			$("#jumpBtn").trigger('click');
+		}
+	});
+
+	$("#jumpBtn").click(function(){
+		var page = parseInt($("#jumpPage").val());
+		if (!/^\d+$/.test(page)){
+			return false;
+		}
+		
+		var maxpage = parseInt($("#jumpPage").attr("maxpage"));
+		if (page < 1 || page > maxpage) {
+			return false;
+		} else {
+			location.href=$("#jumpPage").attr('url')+page;
+		}
+	});
+
+	$(".mn_sort").mouseover(function(){
+		$(".mn_mt").css('background','#3586f2');
+		$(".mn_mc").show();
+	}).mouseleave(function(){
+		$(".mn_mt").css('background','#135abc');
+		$(".mn_mc").hide();
+	});	
+	$('.mn_sort > .mn_mc > .item').hover(function(){
+		$(this).addClass('item_hover');
+		$(this).children('.i_bd').show();
+	},function(){
+		$(this).removeClass('item_hover');
+		$(this).children('.i_bd').hide();
+	});
+});
+
+	//在什么地方加，就是什么位置写，这个是底部，故在底部写就行了
+	document.writeln(footer.toHtml());
+</script>
+</body>
+</html>
