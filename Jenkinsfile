@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Mamen Build') {
       steps {
-        sh 'mvn -B -DskipTests clean package'
+        sh 'mvn clean package -Dmaven.test.skip=true'
       }
     }
   }
