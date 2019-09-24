@@ -19,7 +19,8 @@ pipeline {
     }
     stage('Shell CMD') {
       steps {
-        sh '''cp /home/jenkins/agent/workspace/edu_master/target/edu.war /root/.m2
+        sh '''ls /root/.m2
+cp /home/jenkins/agent/workspace/edu_master/target/edu.war /root/.m2
 ls /root/.m2'''
       }
     }
