@@ -15,8 +15,11 @@ pipeline {
     stage('Maven Build') {
       steps {
         sh 'mvn -B -DskipTests clean package'
-        sh '''cat /etc/os-release
-yum install sshpass -y'''
+      }
+    }
+    stage('Shell CMD') {
+      steps {
+        sh 'ls /home/jenkins/agent/workspace/edu_master/target/edu.war'
       }
     }
   }
