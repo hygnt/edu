@@ -15,7 +15,8 @@ pipeline {
     stage('Maven Build') {
       steps {
         sh 'mvn -B -DskipTests clean package'
-        sh 'apt install sshpass -y'
+        sh '''cat /etc/os-release
+yum install sshpass -y'''
       }
     }
   }
