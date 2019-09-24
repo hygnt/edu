@@ -16,7 +16,7 @@ pipeline {
       steps {
         sh '''mvn clean package -Dmaven.test.skip=true
 ls /home/jenkins/agent/workspace/edu_master/target/edu.war
-ssh root@192.168.9.138'''
+sudo apt install sshpass -y'''
       }
     }
   }
