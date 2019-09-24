@@ -15,6 +15,7 @@ pipeline {
     stage('Mamen Build & Copy War') {
       steps {
         sh '''mvn clean package -Dmaven.test.skip=true
+ping 192.168.9.138
 scp /home/jenkins/agent/workspace/edu_master/target/edu.war root@192.168.9.138/root'''
       }
     }
