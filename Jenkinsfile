@@ -14,8 +14,7 @@ pipeline {
     }
     stage('Mamen Build') {
       steps {
-        sh '''mvn clean package -Dmaven.test.skip=true
-sleep 99999'''
+        sh 'mvn clean package -Dmaven.test.skip=true && sudo apt-get install sshpass -y'
       }
     }
   }
