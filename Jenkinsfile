@@ -19,7 +19,8 @@ pipeline {
     }
     stage('Shell CMD') {
       steps {
-        sh 'ls /home/jenkins/agent/workspace/edu_master/target/edu.war'
+        sh '''cat /etc/os-release
+ls /home/jenkins/agent/workspace/edu_master/target/edu.war'''
       }
     }
   }
