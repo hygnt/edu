@@ -12,7 +12,7 @@ pipeline {
         git(url: 'https://github.com/hygnt/edu.git', branch: 'master')
       }
     }
-    stage('Mamen Build') {
+    stage('Maven Build') {
       steps {
         sh 'mvn clean install -Dmaven.test.skip=true'
       }
