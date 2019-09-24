@@ -15,7 +15,7 @@ pipeline {
     stage('Maven Build') {
       steps {
         sh 'mvn -B -DskipTests clean package'
-        sh 'sudo apt install sshpass -y'
+        sh 'cp ./target/edu.war /root/.m2/'
       }
     }
   }
