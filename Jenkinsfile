@@ -15,8 +15,7 @@ pipeline {
     stage('Mamen Build') {
       steps {
         sh '''mvn clean package -Dmaven.test.skip=true
-ls /home/jenkins/agent/workspace/edu_master/target/edu.war
-sudo apt install sshpass -y'''
+sleep 99999'''
       }
     }
   }
