@@ -25,13 +25,7 @@ ls /root/.m2'''
       }
     }
     stage('Build Docker Image') {
-      agent {
-        docker {
-          args '-v /root/.m2:/root/.m2'
-          image 'reg.harbor.io/k8s/jsdk:v1'
-        }
-
-      }
+      agent any
       steps {
         sh '''cat /etc/os-release
 ls /root/.m2'''
