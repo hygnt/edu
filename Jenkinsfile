@@ -40,7 +40,7 @@ RUN jar -xvf /usr/local/tomcat/webapps/ROOT/edu.war \\
     && rm -f /usr/local/tomcat/webapps/ROOT/edu.war
 ENTRYPOINT ["catalina.sh"]
 EOF
-docker build -t tc-edu:v1'''
+docker build -t tc-edu:v1 ./'''
       }
     }
   }
