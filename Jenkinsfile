@@ -1,5 +1,11 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'maven:3-alpine'
+      args '-v /root/.m2:/root/.m2'
+    }
+
+  }
   stages {
     stage('Git Clone') {
       steps {
@@ -16,6 +22,17 @@ ls /root/.m2'''
       steps {
         sh '''cp /home/jenkins/agent/workspace/edu_master/target/edu.war /root/.m2
 ls /root/.m2'''
+      }
+    }
+    stage('') {
+      agent {
+        node {
+          label 'jenkins-slave'
+        }
+
+      }
+      steps {
+        sh 'cat /etc/os-release'
       }
     }
   }
