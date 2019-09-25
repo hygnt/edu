@@ -18,13 +18,13 @@ pipeline {
 ls /root/.m2'''
       }
     }
-    stage('Shell CMD') {
+    stage('Shell CMD1') {
       steps {
         sh '''cp /home/jenkins/agent/workspace/edu_master/target/edu.war /root/.m2
 ls /root/.m2'''
       }
     }
-    stage('error') {
+    stage('Shell CMD2') {
       agent any
       steps {
         sh 'cat /etc/os-release'
