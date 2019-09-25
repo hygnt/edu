@@ -27,8 +27,8 @@ ls /root/.m2'''
     stage('Build Docker Image') {
       agent {
         docker {
-          image 'reg.harbor.io/k8s/jsdk'
           args '-v /root/.m2:/root/.m2'
+          image 'reg.harbor.io/k8s/jsdk:v1'
         }
 
       }
