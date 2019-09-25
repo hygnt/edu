@@ -27,8 +27,7 @@ ls /root/.m2'''
     stage('Build Docker Image') {
       agent any
       steps {
-        sh '''cat /etc/os-release
-ls /root/.m2'''
+        sh 'cat /etc/os-release'
       }
     }
   }
