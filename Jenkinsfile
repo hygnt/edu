@@ -34,14 +34,7 @@ ls /root/.m2'''
       }
       steps {
         sh '''cat /etc/os-release
-cat >>Dockerfile<<EOF
-FROM tomcate:latest
-COPY /root/.m2/edu.war /usr/local/tomcat/webapps/ROOT/
-RUN jar -xvf /usr/local/tomcat/webapps/ROOT/edu.war \\
-    && rm -f /usr/local/tomcat/webapps/ROOT/edu.war
-ENTRYPOINT ["catalina.sh"]
-EOF
-docker build -t tc-edu:v1 ./'''
+ls /root/.m2'''
       }
     }
   }
