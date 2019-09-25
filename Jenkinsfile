@@ -26,8 +26,9 @@ ls /root/.m2'''
     }
     stage('Build Docker Image') {
       agent {
-        node {
-          label 'jenkins-slave'
+        docker {
+          image 'reg.harbor.io/k8s/jsdk'
+          args '-v /root/.m2:/root/.m2'
         }
 
       }
