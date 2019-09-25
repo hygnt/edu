@@ -19,6 +19,8 @@ cat >Dockerfile<<EOF
 FROM tomcat:latest
 RUN rm -fr /usr/local/tomcat/webapps/ROOT/*
 COPY edu.war /usr/local/tomcat/webapps/ROOT/edu.war
+RUN jar -xvf /usr/local/tomcat/webapps/ROOT/edu.war \\
+    && rm -f /usr/local/tomcat/webapps/ROOT/edu.war
 CMD ["catalina.sh", "run"]
 EOF
 docker build -t tc-edu:v1 .
