@@ -13,11 +13,12 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        sh '''ls /home/jenkins/agent/workspace/edu_master/target/edu.war
+        sh '''cp /home/jenkins/agent/workspace/edu_master/target/edu.war .
+ls edu.war
 cat >Dockerfile<<EOF
 FROM tomcat:latest
 RUN rm -fr /usr/local/tomcat/webapps/ROOT/*
-COPY /home/jenkins/agent/workspace/edu_master/target/edu.war /usr/local/tomcat/webapps/ROOT/edu.war
+COPY edu.war /usr/local/tomcat/webapps/ROOT/edu.war
 CMD ["catalina.sh", "run"]
 EOF
 docker build -t tc-edu:v1 .
