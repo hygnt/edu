@@ -24,7 +24,7 @@ ls /root/.m2'''
 ls /root/.m2'''
       }
     }
-    stage('') {
+    stage('error') {
       agent {
         node {
           label 'jenkins-slave'
