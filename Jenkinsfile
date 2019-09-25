@@ -25,12 +25,7 @@ ls /root/.m2'''
       }
     }
     stage('error') {
-      agent {
-        node {
-          label 'jenkins-slave'
-        }
-
-      }
+      agent any
       steps {
         sh 'cat /etc/os-release'
       }
