@@ -22,7 +22,7 @@ ls /root/.m2'''
       steps {
         sh '''cat >Dockerfile<<EOF
 FROM tomcat:latest
-RUN rm -f /usr/local/tomcat/webapps/ROOT/*
+RUN rm -fr /usr/local/tomcat/webapps/ROOT/*
 COPY /root/.m2/edu.war /usr/local/tomcat/webapps/ROOT/edu.war
 CMD ["catalina.sh", "run"]
 EOF
