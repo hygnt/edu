@@ -21,8 +21,7 @@ ls /root/.m2'''
     stage('Shell CMD') {
       steps {
         sh '''cp /home/jenkins/agent/workspace/edu_master/target/edu.war /root/.m2
-ls /root/.m2
-docker -v'''
+ls /root/.m2'''
       }
     }
     stage('Build Docker Image') {
