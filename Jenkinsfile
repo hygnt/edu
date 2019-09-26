@@ -32,7 +32,11 @@ docker images|grep edu'''
       steps {
         sh '''echo \'192.168.9.135 reg.harbor.io\'>>/etc/hosts
 '''
+        sh '''withCredentials([usernamePassword(credentialsId: \'reg.harbor.io\', passwordVariable: \'dockerHubPassword\', usernameVariable: \'dockerHubUser\')]) {
+  sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword} reg.harbor.io"
+  sh "docker push reg.harbor.io/k8s/edu:v1"
+}'''
+        }
       }
     }
   }
-}
