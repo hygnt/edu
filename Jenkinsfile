@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Git Clone') {
       steps {
-        echo 'Step 1：Pull code from github'
+        echo 'Step 1:Pull code from github'
         git(url: 'https://github.com/hygnt/edu.git', branch: 'master')
       }
     }
