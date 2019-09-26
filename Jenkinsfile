@@ -7,7 +7,7 @@ pipeline {
         git(url: 'https://github.com/hygnt/edu.git', branch: 'master')
       }
     }
-    stage('Maven Build') {
+    stage('Maven Pack') {
       steps {
         echo 'Step 2:Execute code compile and pack'
         sh 'mvn -B -DskipTests clean package'
