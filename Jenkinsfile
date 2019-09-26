@@ -38,6 +38,7 @@ docker images|grep edu'''
           sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword} reg.harbor.io"
           sh "docker push reg.harbor.io/k8s/edu:v1"
         }
+      }
     }
   }
 }
