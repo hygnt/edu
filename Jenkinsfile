@@ -20,12 +20,18 @@ FROM tomcat:latest
 RUN rm -fr /usr/local/tomcat/webapps/ROOT/*
 COPY edu.war /usr/local/tomcat/webapps/ROOT/edu.war
 RUN cd /usr/local/tomcat/webapps/ROOT \\
-    && jar -xvf edu.war \\
+    && jar -xf edu.war \\
     && rm -f edu.war
 CMD ["catalina.sh", "run"]
 EOF
-docker build -t tc-edu:v1 .
-docker images'''
+docker build -t reg.harbor.io/k8s/edu:v1 .
+docker images|grep edu'''
+      }
+    }
+    stage('Docker Push') {
+      steps {
+        sh '''cat \'192.168.9.135 reg.harbor.io\'>>/etc/hosts
+'''
       }
     }
   }
