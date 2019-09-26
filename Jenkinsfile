@@ -30,7 +30,7 @@ docker images|grep edu'''
     }
     stage('Docker Push') {
       steps {
-        sh '''cat \'192.168.9.135 reg.harbor.io\'>>/etc/hosts
+        sh '''echo \'192.168.9.135 reg.harbor.io\'>>/etc/hosts
 '''
       }
     }
