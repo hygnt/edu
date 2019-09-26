@@ -15,6 +15,7 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
+        echo 'Step 3:Docker build image'
         sh '''cp /home/jenkins/agent/workspace/edu_master/target/edu.war .
 ls edu.war
 cat >Dockerfile<<EOF
@@ -32,6 +33,7 @@ docker images|grep edu'''
     }
     stage('Docker Push') {
       steps {
+        echo 'Step 4:Docker push image to registry'
         sh '''echo \'192.168.9.135 reg.harbor.io\'>>/etc/hosts
 cat /etc/hosts
 docker login -u admin -p Harbor12345 reg.harbor.io
