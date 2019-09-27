@@ -40,13 +40,5 @@ docker build -t reg.harbor.io/k8s/edu:v1 .'''
 
       }
     }
-    stage('Shell CMD Test') {
-      steps {
-        sh 'mvn -v'
-        sh 'java -version'
-        sh 'docker info'
-        sh 'kubectl get node'
-      }
-    }
   }
 }
